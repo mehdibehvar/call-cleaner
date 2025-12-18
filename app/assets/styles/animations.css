@@ -1,0 +1,33 @@
+/* Custom Animations */
+@keyframes shrink-from-right {
+  from {
+    width: 100%;
+    opacity: 1;
+  }
+  to {
+    width: 0%;
+    opacity: 0.8;
+  }
+}
+
+@keyframes grow-from-left {
+  from {
+    width: 0%;
+    opacity: 0.8;
+  }
+  to {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+/* Animation Classes */
+.animate-shrink-from-right {
+  animation: shrink-from-right 1.5s ease-out forwards;
+  transform-origin: right center;
+}
+
+.animate-grow-from-left {
+  animation: grow-from-left 1.5s ease-out forwards;
+  transform-origin: left center;
+}

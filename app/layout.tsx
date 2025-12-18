@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
+import { cn } from "@/utils/helpers";
+import './assets/icomoon/style.css'
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -25,9 +26,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={cn(geistSans.variable, geistMono.variable, "antialiased")}
       >
-        {children}
+          <div className="p-4 min-h-screen bg-[url(/images/wallpaper/bg.png)] bg-cover bg-fixed bg-center">
+            {children}
+          </div>
       </body>
     </html>
   );

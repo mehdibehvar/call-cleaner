@@ -1,0 +1,32 @@
+@font-face {
+  font-family: 'icomoon';
+  src: url('./fonts/icomoon.woff?uzrdg6') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="i-"], [class*=" i-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.i-home:before {
+  content: "\e900";
+}
+.i-profile-circle:before {
+  content: "\e901";
+}
+.i-receipt-2:before {
+  content: "\e902";
+}
