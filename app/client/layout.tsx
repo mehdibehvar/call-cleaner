@@ -3,11 +3,11 @@ import Header from "./components/header";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="">
-        <Header/>
+    <>
+      <Header />
       {children}
       <Navbar />
-    </div>
+    </>
   );
 };
 

@@ -10,6 +10,10 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-inter: var(--font-inter);
+  --color-danger: var(--color-red-500);
+  --color-success: var(--color-green-500);
+  --color-warning: var(--color-yellow-500);
   --color-primary-50: #e6f2ff;
   --color-primary-100: #cce4ff;
   --color-primary-200: #99c9ff;
@@ -55,7 +59,7 @@
 body {
   background: var(--background);
   color: var(--color-text);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter);
 }
 
 .bubble {
@@ -85,4 +89,8 @@ body {
   border-right: var(--t) solid #0000;
   margin-left: var(--t);
   place-self: end;
+}
+
+*{
+  font-family: inherit;
 }

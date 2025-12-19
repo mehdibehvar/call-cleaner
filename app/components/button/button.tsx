@@ -1,8 +1,9 @@
+
 import { cn } from "@/app/utils/helpers";
 import { cva, type VariantProps } from "class-variance-authority";
 
 const buttonVariants = cva(
-  "text-sm font-medium text-primary-foreground   border border-transparent hover:bg-primary-600 focus:ring-4 focus:ring-primary-600 shadow-xs focus:outline-none px-3 flex items-center gap-2 justify-center leading-5 rounded-sm",
+  "text-sm font-medium text-primary-foreground   border border-transparent hover:bg-primary-600 focus:ring-2 focus:ring-primary-600 shadow-xs focus:outline-none px-3 flex items-center gap-2 justify-center leading-5 rounded-sm",
   {
     variants: {
       size: {
@@ -12,12 +13,12 @@ const buttonVariants = cva(
         lg: "h-12",
       },
       variant: {
-        default: "",
+        default: "bg-primary",
         soft: "bg-secondary-100 text-secondary-foreground hover:bg-secondary-200 hover:opacity-50",
         ghost:
           "bg-transparent  border border-transparent hover:bg-secondary-100 focus:ring-4 focus:ring-secondary-300 focus:outline-none",
         outline:
-          "bg-transparent border border-secondary-300 hover:bg-secondary-100 focus:ring-4 focus:ring-secondary-300 focus:outline-none",
+          "bg-transparent border border-secondary-200 text-secondary-700 hover:bg-secondary-100 focus:ring-4 focus:ring-secondary-300 focus:outline-none",
         surface:
           "bg-secondary-100 text-secondary-foreground hover:bg-secondary-200 hover:opacity-50 focus:ring-4 focus:ring-secondary-300 focus:outline-none",
       },
@@ -51,8 +52,7 @@ const Button = ({
   return (
     <button
       ref={ref}
-      className=""
-      //   className={cn(buttonVariants({ variant, size, className }))}
+      className={cn(buttonVariants({ variant, size, className }))}
       onClick={onClick}
       {...props}
     >

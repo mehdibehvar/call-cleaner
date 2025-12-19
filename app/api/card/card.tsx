@@ -1,3 +1,4 @@
+import Button from "@/app/components/button/button";
 import Image from "next/image";
 
 interface data {
@@ -11,28 +12,31 @@ interface data {
   id: string;
 }
 
-const Card = ({ children }: { children: React.ReactNode }) => {
+const Card = ({ data }: { data: data }) => {
   return (
-      <div className="flex flex-col  bg-white rounded-sm overflow-hidden shadow-sm w-full">
-       <Image
-        src="/images/card/card1.png"
+    <div className="flex flex-col relative bg-white rounded-md overflow-hidden shadow-md w-full">
+      <Image
+        src="/images/card/card1.jpg"
         alt="Sample Image"
         width={400}
         height={200}
         className="w-full h-auto"
       />
-      <div className="absolute top-0 left-0 right-0 flex justify-between w-full">
-        <span>icon</span>
+      <div className="flex flex-col gap-4 p-4">
+        <div className="absolute top-0 left-0 right-0 flex justify-between w-full">
+          <span>icon</span>
+        </div>
+        <h2>clean call</h2>
+        <p className="text-sm text-gray">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
+          risus.
+        </p>
+        <div className="flex justify-between w-full">
+          <span>rating</span>
+          <Button>add to book list</Button>
+        </div>
       </div>
-      <h2>clean call</h2>
-      <p className="text-sm text-gray">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.
-      </p>
-      <div className="flex justify-between w-full">
-        <span>rating</span>
-        <button>add to book list</button>
-      </div>
-      </div>
+    </div>
   );
 };
 

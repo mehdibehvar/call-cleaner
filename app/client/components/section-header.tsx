@@ -12,10 +12,10 @@ const SectionHeader = ({ title }: { title: string }) => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsInView(entry.isIntersecting);
-        // if (entry.isIntersecting) {
-        //   setIsInView(true);
-        //   observer.unobserve(entry.target);Only trigger once (for animations)
-        // }
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.unobserve(entry.target);//Only trigger once (for animations)
+        }
       },
       {
         threshold: 0.1, // Trigger when 10% of element is visible

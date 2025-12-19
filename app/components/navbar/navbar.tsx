@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Icon from "../icon/icon";
+import { BellAlertIcon, BookmarkIcon, HomeIcon, UserIcon } from "@heroicons/react/24/outline";
 
 const Navbar = () => {
   return (
@@ -15,33 +16,37 @@ const Navbar = () => {
         justify-between
         items-center
         sm:hidden
+        *:bg-secondary-200
+        *:rounded-full
+        *:size-12
+        **:text-primary
       "
     >
       <Link
-        href="/client/home"
-        className="flex items-center justify-center bg-secondary-200 rounded-full w-14 h-14"
-      >
-        <Icon name="home" size={32} />
-      </Link>
-
-      <Link
         href="/client/profile"
-        className="flex items-center justify-center bg-secondary-200 rounded-full w-16 h-16"
+        className="flex items-center justify-center "
       >
-        <Icon name="profile-circle" size={32} />
+        <UserIcon className="size-8"  />
       </Link>
 
       <Link
-        href="/client/settings"
-        className="flex items-center justify-center bg-secondary-200 rounded-full w-16 h-16"
+        href="/client/booking"
+        className="flex items-center justify-center"
       >
-        <Icon name="receipt-2" size={32} />
+        <BookmarkIcon className="size-8" />
+      </Link>
+
+      <Link
+        href="/client/notifications"
+        className="flex items-center justify-center"
+      >
+       <BellAlertIcon className="size-8" />
       </Link>
       <Link
-        href="/client/settings"
-        className="flex items-center justify-center bg-secondary-200 rounded-full w-16 h-16"
+        href="/client/home"
+        className="flex items-center justify-center"
       >
-        <Icon name="receipt-2" size={32} />
+        <HomeIcon className="size-8" />
       </Link>
       
     </nav>
