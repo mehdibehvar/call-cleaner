@@ -1,17 +1,13 @@
-
 import { cn } from "@/app/utils/helpers";
 import { cva, type VariantProps } from "class-variance-authority";
 
 const buttonVariants = cva(
-  "text-sm font-medium text-primary-foreground cursor-pointer   border border-transparent hover:bg-primary-600 focus:ring-2 focus:ring-primary-600 shadow-xs focus:outline-none px-3 flex items-center gap-2 justify-center leading-5 rounded-sm",
+  "text-sm font-medium text-primary-foreground   border border-transparent hover:bg-primary-600 focus:ring-1 focus:ring-primary-600  focus:outline-none flex items-center justify-center leading-5 rounded-sm",
   {
     variants: {
       size: {
-        xs: "h-6",
-        default: "h-8",
-        md: "h-10",
-        lg: "h-12",
-        icon:"size-10 p-0",
+        xs: "size-6",
+        default: "size-8",
       },
       variant: {
         default: "bg-primary",
@@ -21,7 +17,7 @@ const buttonVariants = cva(
         outline:
           "bg-transparent border border-secondary-200 text-secondary-700 hover:bg-secondary-100 focus:ring-4 focus:ring-secondary-300 focus:outline-none",
         surface:
-          "bg-primary-100 text-secondary-foreground hover:bg-primary-200 hover:opacity-50 focus:ring-1 focus:ring-primary-200 focus:outline-none",
+          "bg-secondary-100 text-secondary-foreground hover:bg-secondary-200 hover:opacity-50 focus:ring-4 focus:ring-secondary-300 focus:outline-none",
       },
 
       defaultVariants: {
@@ -40,7 +36,7 @@ export interface ButtonProps
   ref?: React.Ref<HTMLButtonElement>;
 }
 
-const Button = ({
+const IconButton = ({
   className,
   variant = "default",
   ref,
@@ -62,4 +58,4 @@ const Button = ({
   );
 };
 
-export default Button;
+export default IconButton;

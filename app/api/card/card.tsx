@@ -1,5 +1,7 @@
 import Button from "@/app/components/button/button";
+import { HeartIcon, ShareIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import Link from "next/link";
 
 interface data {
   name: string;
@@ -23,8 +25,13 @@ const Card = ({ data }: { data: data }) => {
         className="w-full h-auto"
       />
       <div className="flex flex-col gap-4 p-4">
-        <div className="absolute top-0 left-0 right-0 flex justify-between w-full">
-          <span>icon</span>
+        <div className="p-1 absolute top-0 left-0 right-0 flex justify-between w-full">
+          {/* <Link href="">
+               <ShareIcon className="size-8 text-gray-500" />
+          </Link> */}
+          <Button variant="surface" size="icon">
+            <HeartIcon className="size-8 text-red-500" />
+          </Button>
         </div>
         <h2>clean call</h2>
         <p className="text-sm text-gray">
