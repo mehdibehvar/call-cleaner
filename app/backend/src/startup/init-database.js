@@ -1,13 +1,14 @@
 import mongoose from "mongoose";
 import winston from "winston";
 import config from "config";
+import { appName } from "../utils/const";
 
 // Database initialization function
 const initDatabase = async () => {
   // Prefer config value but fall back to localhost
   const configuredUri = config.has("db.uri") && config.get("db.uri")
     ? config.get("db.uri")
-    : "mongodb://localhost:27017/vitesell";
+    : `mongodb://localhost:27017/${appName}`;
 
   // Log the host/port/replicaSet part (mask credentials if present)
   const safeUri = configuredUri.replace(/:(?:\/\/)?(.*@)/, "//***@") || configuredUri;

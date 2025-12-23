@@ -1,5 +1,6 @@
 import winston from "winston";
 import "winston-mongodb";
+import { appName } from "../utils/const";
 
 const initLogger = (app) => {
   // Configure the global default logger so 'winston.info' logs go to the transports
@@ -13,7 +14,7 @@ const initLogger = (app) => {
     new winston.transports.File({ filename: "logfile.log" }),
     new winston.transports.MongoDB({
       level: "info",
-      db: "mongodb://localhost:27017/vitesell",
+      db: `mongodb://localhost:27017/${appName}`,
       collection: "logs",
       format: winston.format.json(),
     }),
