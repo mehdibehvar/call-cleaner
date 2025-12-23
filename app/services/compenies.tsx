@@ -1,4 +1,3 @@
-import { Icompany } from "../types/common";
 
 
 export async function getCompenies()  {

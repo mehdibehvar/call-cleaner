@@ -10,7 +10,7 @@ const  Products = async ({
     const allCompenies = await fetchingCompeniesPromise;
   return (
     <>
-      {allCompenies.map((compeny) => (
+      {allCompenies?.map((compeny) => (
         <Link href={`/client/compeny/${compeny.id}`}>
           <Card key={compeny.id} data={compeny} />
         </Link>

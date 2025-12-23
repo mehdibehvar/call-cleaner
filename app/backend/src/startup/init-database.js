@@ -1,14 +1,13 @@
 import mongoose from "mongoose";
 import winston from "winston";
 import config from "config";
-import { appName } from "../utils/const";
 
 // Database initialization function
 const initDatabase = async () => {
   // Prefer config value but fall back to localhost
   const configuredUri = config.has("db.uri") && config.get("db.uri")
     ? config.get("db.uri")
-    : `mongodb://localhost:27017/${appName}`;
+    : "mongodb://localhost:27017/call-cleaner";
 
   // Log the host/port/replicaSet part (mask credentials if present)
   const safeUri = configuredUri.replace(/:(?:\/\/)?(.*@)/, "//***@") || configuredUri;
@@ -37,7 +36,7 @@ const initDatabase = async () => {
       }
       // exponential backoff (500ms, 1000ms, 2000ms, ...)
       const backoff = 500 * Math.pow(2, attempt - 1);
-      await new Promise((r) => setTimeout(r, backoff));
+      await new Promise((r) => setTimeout(r, backoff)); 
     }
   }
 };

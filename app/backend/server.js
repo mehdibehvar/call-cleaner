@@ -48,7 +48,7 @@ if (process.env.NODE_ENV !== "production") {
   });
 }
 
-initLogger(app);
+initLogger(app); 
 registerRoutes(app);
 initDatabase();
 setTemplateEngine(app);
