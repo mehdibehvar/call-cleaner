@@ -1,0 +1,7 @@
+{
+  "db": {
+    "uri": "DB_URI",
+    "password": "DB_PASSWORD"
+  },
+  "jwtPrivateKey": "JWT_PRIVATE_KEY"
+}

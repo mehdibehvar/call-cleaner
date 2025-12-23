@@ -1,0 +1,12 @@
+{
+  "jwtPrivateKey": "",
+  "app": {
+    "port": 5000
+  },
+  "db": {
+    "uri": "mongodb://localhost:27017/call-cleaner"
+  },
+  "log": {
+    "level": "debug"
+  } 
+}

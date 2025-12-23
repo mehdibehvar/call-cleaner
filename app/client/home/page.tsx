@@ -8,6 +8,8 @@ import { Suspense } from "react";
 import Spinner from "@/app/components/spinner";
 import Products from "@/app/components/products";
 import Filter from "@/app/components/filter/filter";
+import { getCompenies } from "@/app/services/compenies";
+import { Icompany } from "@/app/types/common";
 
 const items = [
   {
@@ -32,10 +34,9 @@ const items = [
     url: "/",
   },
 ];
+
 const Home = () => {
-  const data = fetch("http://localhost:3000/api/products").then((res) =>
-    res.json()
-  );
+  const getCompeniesPromise = getCompenies();
   return (
     <main className="min-h-screen  space-y-4 md:space-y-8 py-4 md:py-8">
       <Carousel items={items} />
@@ -49,10 +50,10 @@ const Home = () => {
       </section>
       <section>
         <SectionHeader title="companies" />
-        <Filter/>
+        <Filter />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <Suspense fallback={<Spinner />}>
-            <Products products={data} />
+            <Products fetchingCompeniesPromise={getCompeniesPromise} />
           </Suspense>
         </div>
       </section>

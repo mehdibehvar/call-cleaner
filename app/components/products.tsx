@@ -1,19 +1,18 @@
-"use client";
-import { use } from "react";
 import Card from "../api/card/card";
 import Link from "next/link";
+import { Icompany } from "@/types/common";
 
-const Products = ({
-  products,
+const  Products = async ({
+  fetchingCompeniesPromise,
 }: {
-  products: Promise<{ id: string; name: string }[]>;
+  fetchingCompeniesPromise: Promise<Icompany[]>
 }) => {
-  const allProducts = use(products);
+    const allCompenies = await fetchingCompeniesPromise;
   return (
     <>
-      {allProducts.map((product) => (
-        <Link href={`/client/product/${product.id}`}>
-          <Card key={product.id} data={product} />{" "}
+      {allCompenies.map((compeny) => (
+        <Link href={`/client/compeny/${compeny.id}`}>
+          <Card key={compeny.id} data={compeny} />
         </Link>
       ))}
     </>
