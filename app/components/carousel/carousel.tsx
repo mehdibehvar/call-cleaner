@@ -21,7 +21,7 @@ export function Carousel({ items , className }: CarouselProps) {
         <div className="embla__container flex gap-1">
           {items.map((item, index) => (
             <div className="shrink-0  basis-full" key={item.id}>
-              <div key={item.id} className="embla__slide relative aspect-video overflow-hidden rounded-md bg-gray-200">
+              <div  className="embla__slide relative aspect-video overflow-hidden rounded-md bg-gray-200">
                 <Image
                   src={item.src}
                   alt={item.alt}

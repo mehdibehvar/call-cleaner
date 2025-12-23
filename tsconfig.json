@@ -24,6 +24,7 @@
     "@/utils/*": ["./app/utils/*"],
     "@/assets/*": ["./app/assets/*"],
     "@/types/*": ["./app/types/*"],
+    "@/backend/*": ["./app/backend/*"],
     }
   },
   "include": [

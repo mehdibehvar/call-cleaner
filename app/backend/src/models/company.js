@@ -48,12 +48,6 @@ const companySchema = new Schema({
   phone: {
     type: String,
     required: true,
-    validate: {
-      validator: function (v) {
-        return /^[0-9]{10}$/.test(v);
-      },
-      message: "Phone number must be 10 digits",
-    },
   },
   createdAt: {
     type: Date,
@@ -62,7 +56,7 @@ const companySchema = new Schema({
 });
 
 // Company model
-const Company = model("company", companySchema);
+const Company = mongoose.models?.company || model("company", companySchema);
 
 // Joi validation schema for requests
 const companySchemaValidation = {
@@ -79,7 +73,7 @@ const companySchemaValidation = {
       .regex(/^https?:\/\/.*\.(jpg|jpeg|png|gif)$/)
       .required(),
     address: Joi.string().max(300).required(),
-    phone: Joi.string().regex(/^[0-9]{10}$/).required(),
+    phone: Joi.string(),
   }),
 };
 

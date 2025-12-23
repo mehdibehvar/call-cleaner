@@ -32,8 +32,7 @@ const Card = ({ data }: { data: data }) => {
         </div>
         <h2>{data.name}</h2>
         <p className="text-sm text-gray">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
-          risus.
+          {data.short_description}
         </p>
         <div className="flex justify-between w-full">
           <span>rating</span>

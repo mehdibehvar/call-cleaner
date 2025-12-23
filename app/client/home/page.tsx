@@ -1,4 +1,3 @@
-import BubbleBox from "@/app/components/bubble-box/bubble-box";
 import SectionHeader from "../components/section-header";
 import { Carousel } from "@/app/components/carousel/carousel";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
@@ -8,8 +7,8 @@ import { Suspense } from "react";
 import Spinner from "@/app/components/spinner";
 import Products from "@/app/components/products";
 import Filter from "@/app/components/filter/filter";
-import { getCompenies } from "@/app/services/compenies";
-import { Icompany } from "@/app/types/common";
+import { getCompenies } from "../actions/compenies";
+
 
 const items = [
   {
@@ -39,7 +38,31 @@ const Home = () => {
   const getCompeniesPromise = getCompenies();
   return (
     <main className="min-h-screen  space-y-4 md:space-y-8 py-4 md:py-8">
-      <Carousel items={items} />
+      <section>
+        <div className="md:grid md:grid-cols-4 md:gap-2">
+          <div className="hidden md:block border-2 border-gray-300 rounded-md p-4 md:p-8">
+            <h1 className="text-3xl font-bold">Welcome to Call Cleaner</h1>
+            <p className="text-lg">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+              molestie, neque non scelerisque ultricies, nisi dolor egestas
+              augue, vel suscipit nisl nunc eu purus. Sed vitae nisi eget tortor
+             
+            </p>
+          </div>
+          <Carousel items={items}  className="col-span-2"/>
+          <div className="hidden md:block border-2 border-gray-300 rounded-md p-4 md:p-8">
+            <h1 className="text-3xl font-bold">Welcome to Call Cleaner</h1>
+            <p className="text-lg">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+              molestie, neque non scelerisque ultricies, nisi dolor egestas
+              augue, vel suscipit nisl nunc eu purus. Sed vitae nisi eget tortor
+              tincidunt condimentum. Sed eget nisl eget nunc pellentesque
+              aliquet. Sed in libero ut nisi tincidunt sollicitudin. Donec eget
+              nulla euismod,
+            </p>
+          </div>
+        </div>
+      </section>
       <section>
         <Link href="/client/booking">
           <Button size={"md"} className="w-full text-lg">
