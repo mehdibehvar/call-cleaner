@@ -1,24 +1,25 @@
-import Button from "@/app/components/button/button";
-import { HeartIcon, ShareIcon } from "@heroicons/react/24/outline";
+import Button from "@/components/button/button";
+import { HeartIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
-import Link from "next/link";
 
 interface data {
+  _id: string;
   name: string;
+  shortDescription: string;
+  longDescription: string;
+  logo: string;
+  thumbnail: string;
+  address: string;
+  rating: number;
   email: string;
   phone: string;
-  short_description: string;
-  long_description: string;
-  image: string;
-  rating: number;
-  id: string;
 }
 
 const Card = ({ data }: { data: data }) => {
   return (
     <div className="flex flex-col relative bg-white rounded-md overflow-hidden shadow-md w-full">
       <Image
-        src="/images/card/card1.jpg"
+        src={data.thumbnail}
         alt="Sample Image"
         width={400}
         height={200}
@@ -31,9 +32,7 @@ const Card = ({ data }: { data: data }) => {
           </Button>
         </div>
         <h2>{data.name}</h2>
-        <p className="text-sm text-gray">
-          {data.short_description}
-        </p>
+        <p className="text-sm text-gray">{data.shortDescription}</p>
         <div className="flex justify-between w-full">
           <span>rating</span>
           <Button>add to book list</Button>

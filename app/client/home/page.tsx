@@ -1,14 +1,11 @@
 import SectionHeader from "../components/section-header";
-import { Carousel } from "@/app/components/carousel/carousel";
+import { Carousel } from "@/components/carousel/carousel";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
-import Button from "@/app/components/button/button";
+import Button from "@/components/button/button";
 import Link from "next/link";
-import { Suspense } from "react";
-import Spinner from "@/app/components/spinner";
-import Products from "@/app/components/products";
-import Filter from "@/app/components/filter/filter";
-import { getCompenies } from "../actions/compenies";
-
+import Products from "@/components/products";
+import Filter from "@/components/filter/filter";
+import { getCompaniesaction } from "../actions/compenies";
 
 const items = [
   {
@@ -34,8 +31,8 @@ const items = [
   },
 ];
 
-const Home = () => {
-  const getCompeniesPromise = getCompenies();
+const Home = async () => {
+  const getCompeniesResolved = await getCompaniesaction();
   return (
     <main className="min-h-screen  space-y-4 md:space-y-8 py-4 md:py-8">
       <section>
@@ -46,10 +43,9 @@ const Home = () => {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
               molestie, neque non scelerisque ultricies, nisi dolor egestas
               augue, vel suscipit nisl nunc eu purus. Sed vitae nisi eget tortor
-             
             </p>
           </div>
-          <Carousel items={items}  className="col-span-2"/>
+          <Carousel items={items} className="col-span-2" />
           <div className="hidden md:block border-2 border-gray-300 rounded-md p-4 md:p-8">
             <h1 className="text-3xl font-bold">Welcome to Call Cleaner</h1>
             <p className="text-lg">
@@ -75,9 +71,7 @@ const Home = () => {
         <SectionHeader title="companies" />
         <Filter />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <Suspense fallback={<Spinner />}>
-            <Products fetchingCompeniesPromise={getCompeniesPromise} />
-          </Suspense>
+          <Products allCompenies={getCompeniesResolved} />
         </div>
       </section>
     </main>

@@ -18,13 +18,13 @@
         "name": "next"
       }
     ],
+    "baseUrl": "app/",
     "paths": {
-      "@/*": ["./*"],
-    "@/components/*": ["./app/components/*"],
-    "@/utils/*": ["./app/utils/*"],
-    "@/assets/*": ["./app/assets/*"],
-    "@/types/*": ["./app/types/*"],
-    "@/backend/*": ["./app/backend/*"],
+      "@/components/*": ["components/*"],
+      "@/utils/*": ["utils/*"],
+      "@/assets/*": ["assets/*"],
+      "@/types/*": ["types/*"],
+      "@/backend/*": ["backend/*"]
     }
   },
   "include": [

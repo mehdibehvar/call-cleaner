@@ -2,12 +2,10 @@
 
 import { useActionState } from "react";
 import { createCompany } from "../actions/creat-company";
-import Button from "@/app/components/button/button";
-import { cn } from "@/app/utils/helpers";
+import Button from "@/components/button/button";
+import { cn } from "@/utils/helpers";
 
-const initialState = {
-
-};
+const initialState = {};
 
 export default function CreateCompanyPage() {
   const [state, action, pending] = useActionState(createCompany, initialState);
@@ -113,7 +111,9 @@ export default function CreateCompanyPage() {
               </label>
               <textarea
                 id="longDescription"
-                value={"Full description, services, details"}
+                value={
+                  "Using searchParams opts your page into dynamic rendering because it requires an incoming request to read the search parameters from. This is a great way to use searchParams in your Next.js app."
+                }
                 name="longDescription"
                 placeholder="Full description, services, details"
                 className="mt-1 block w-full rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-400 min-h-[120px]"
@@ -136,7 +136,9 @@ export default function CreateCompanyPage() {
                 <input
                   id="thumbnail"
                   name="thumbnail"
-                  value={"https://example.com/logo.png"}
+                  value={
+                    "https://5ohc0ytmhc.ucarecd.net/310544ca-b8a8-4995-931f-71e0ee5cacd6/examplegoodfaces.jpg"
+                  }
                   placeholder="https://.../thumb.jpg"
                   className="mt-1 block w-full rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-400"
                 />
@@ -157,7 +159,9 @@ export default function CreateCompanyPage() {
                 <input
                   id="logo"
                   name="logo"
-                  value={"https://example.com/logo.png"}
+                  value={
+                    "https://5ohc0ytmhc.ucarecd.net/790a2dd9-e7e1-472a-8661-9139afba001a/examplelukeoslizlo.jpg"
+                  }
                   placeholder="https://.../logo.png"
                   className="mt-1 block w-full rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-400"
                 />

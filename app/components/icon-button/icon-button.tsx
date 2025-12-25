@@ -1,4 +1,4 @@
-import { cn } from "@/app/utils/helpers";
+import { cn } from "@/utils/helpers";
 import { cva, type VariantProps } from "class-variance-authority";
 
 const buttonVariants = cva(

@@ -1,4 +1,4 @@
-import { cn } from "@/app/utils/helpers";
+import { cn } from "@/utils/helpers";
 
 type IconProps = {
   name: string;
@@ -29,5 +29,3 @@ const Icon = ({
 };
 
 export default Icon;
-
-

@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/app/utils/helpers";
+import { cn } from "@/utils/helpers";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
@@ -14,7 +14,7 @@ const SectionHeader = ({ title }: { title: string }) => {
         setIsInView(entry.isIntersecting);
         if (entry.isIntersecting) {
           setIsInView(true);
-          observer.unobserve(entry.target);//Only trigger once (for animations)
+          observer.unobserve(entry.target); //Only trigger once (for animations)
         }
       },
       {

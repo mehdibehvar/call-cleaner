@@ -1,5 +1,4 @@
-
-import { cn } from "@/app/utils/helpers";
+import { cn } from "@/utils/helpers";
 import { cva, type VariantProps } from "class-variance-authority";
 
 const buttonVariants = cva(
@@ -11,7 +10,7 @@ const buttonVariants = cva(
         default: "h-8",
         md: "h-10",
         lg: "h-12",
-        icon:"size-10 p-0",
+        icon: "size-10 p-0",
       },
       variant: {
         default: "bg-primary",
