@@ -6,7 +6,7 @@ const Products = ({ allCompenies }: { allCompenies?: Icompany[] }) => {
   return (
     <>
       {allCompenies?.map((comp) => (
-        <Link key={comp._id} href={`/client/company/${comp._id}`}>
+        <Link key={comp.id} href={`/client/company/${comp.id}`}>
           <Card data={comp} />
         </Link>
       ))}

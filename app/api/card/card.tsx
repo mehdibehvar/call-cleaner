@@ -3,7 +3,7 @@ import { HeartIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 
 interface data {
-  _id: string;
+  id: string;
   name: string;
   shortDescription: string;
   longDescription: string;
@@ -16,15 +16,17 @@ interface data {
 }
 
 const Card = ({ data }: { data: data }) => {
+  console.log(data);
   return (
     <div className="flex flex-col relative bg-white rounded-md overflow-hidden shadow-md w-full">
-      <Image
-        src={data.thumbnail}
-        alt="Sample Image"
-        width={400}
-        height={200}
-        className="w-full h-auto"
-      />
+      <div className="relative w-full h-48">
+        <Image
+          src={data.thumbnail}
+          alt={data.name}
+          fill
+          className="object-cover"
+        />
+      </div>
       <div className="flex flex-col gap-4 p-4">
         <div className="p-1 absolute top-0 left-0 right-0 flex justify-between w-full">
           <Button variant="surface" size="icon">
@@ -34,7 +36,7 @@ const Card = ({ data }: { data: data }) => {
         <h2>{data.name}</h2>
         <p className="text-sm text-gray">{data.shortDescription}</p>
         <div className="flex justify-between w-full">
-          <span>rating</span>
+          <span>{data.rating}</span>
           <Button>add to book list</Button>
         </div>
       </div>

@@ -5,7 +5,9 @@ import Button from "@/components/button/button";
 import Link from "next/link";
 import Products from "@/components/products";
 import Filter from "@/components/filter/filter";
-import { getCompaniesaction } from "../actions/compenies";
+import { headers } from "next/headers";
+import Pagination from "@/components/paginaation/pagination";
+import getCompaniesAdvanced from "_lib/get-companies-paginated";
 
 const items = [
   {
@@ -31,8 +33,30 @@ const items = [
   },
 ];
 
-const Home = async () => {
-  const getCompeniesResolved = await getCompaniesaction();
+const Home = async ({
+  searchParams,
+}: {
+  searchParams: {
+    page?: string;
+    limit?: string;
+    sort?: string;
+    search?: string;
+    city?: string;
+  };
+}) => {
+  // Read request headers first to satisfy Next's prerender-time checks
+  headers();
+  const { page: searchPage, limit, sort, search, city } = await searchParams;
+  const page = searchPage ? Number(searchPage as string) : 1;
+  // SSR کامل
+  // SEO friendly
+  const { companies, totalPages } = await getCompaniesAdvanced({
+    page,
+    limit: limit ? Number(limit as string) : 8,
+    sort,
+    search,
+    city,
+  });
   return (
     <main className="min-h-screen  space-y-4 md:space-y-8 py-4 md:py-8">
       <section>
@@ -71,7 +95,19 @@ const Home = async () => {
         <SectionHeader title="companies" />
         <Filter />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <Products allCompenies={getCompeniesResolved} />
+          <Products allCompenies={companies} />
+        </div>
+        <div className="flex justify-center">
+          <Pagination
+            page={page}
+            totalPages={totalPages}
+            query={{
+              sort: sort??"",
+              search: search??"",
+              city: city??"",
+              limit: limit??"",
+            }}
+          />
         </div>
       </section>
     </main>

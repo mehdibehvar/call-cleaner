@@ -49,6 +49,10 @@ const companySchema = new Schema({
     type: String,
     required: true,
   },
+  rating:{
+    type: Number,
+    default:0,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
@@ -74,6 +78,7 @@ const companySchemaValidation = {
       .required(),
     address: Joi.string().max(300).required(),
     phone: Joi.string(),
+    rating: Joi.number().min(0).max(5).default(0),
   }),
 };
 

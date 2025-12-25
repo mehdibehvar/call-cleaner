@@ -34,9 +34,6 @@ import { fetchApi } from "@/utils/fetch-api";
 // 👉 همون لحظه صفحه Home آپدیت بشه (بدون رفرش دستی)
 // services/comps.ts
 export async function fetchCompanies() {
-  // const res = await fetch("http://localhost:3000/api/v1/company", {
-  //   next: { tags:["companies"],revalidate: 60 }, // هر 60 ثانیه
-  // });
   const res = await fetchApi({
     url: "/api/v1/company",
     next: {
@@ -54,7 +51,8 @@ export async function fetchCompanies() {
 // 🔄 بعدش → revalidatePath
 
 export async function getCompany(id: string) {
-  const res = await fetch(`http://localhost:3000/api/v1/company/${id}`, {
+  const res= await fetchApi({
+    url: `/api/v1/company/${id}`,
     cache: "no-store",
   });
   return res.json();

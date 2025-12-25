@@ -5,8 +5,9 @@ import { Company, companySchemaValidation } from "@/backend/src/models/company";
 import { validateJoi } from "@/backend/src/utils/validate-joi";
 import { Icompany } from "@/types/common";
 import { revalidateTag } from "next/cache";
+import { pickFormData } from "@/utils/helpers";
 
-interface CreateCompanyState {
+export interface CreateCompanyState {
   success?: boolean;
   errors?: Record<string, string>;
   data?: Icompany;
@@ -24,28 +25,37 @@ export async function createCompany(
 ): Promise<CreateCompanyState> {
   await connectDB();
 
-  const payload = {
-    name: formData.get("name"),
-    shortDescription: formData.get("shortDescription"),
-    longDescription: formData.get("longDescription"),
-    thumbnail: formData.get("thumbnail"),
-    logo: formData.get("logo"),
-    address: formData.get("address"),
-    phone: formData.get("phone"),
-  };
-
-  const result = validateJoi(companySchemaValidation.body, payload);
+  const payload = pickFormData(formData, [
+    "name",
+    "shortDescription",
+    "longDescription",
+    "thumbnail",
+    "logo",
+    "address",
+    "phone",
+    "rating",
+  ]);
+  const result = validateJoi<Icompany>(companySchemaValidation.body, payload);
 
   if (!result.success) {
     return { errors: result.errors };
   }
 
-  await Company.create(result.data);
+  await Company.create({
+    ...result.data,
+    rating: 0,
+  });
   // 🔥 مهم‌ترین خط
   // revalidatePath("/"); // Home
   // revalidatePath("/dashboard/company"); // اگه داشبورد هم لیست داره
   revalidateTag("companies", "max");
-  return { success: true, data: result.data };
+  return {
+    success: true,
+    data: {
+      ...result.data,
+      rating: 0,
+    },
+  };
 }
 
 ///راه‌حل استاندارد Next.js ✅

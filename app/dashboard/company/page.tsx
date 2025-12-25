@@ -1,15 +1,16 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { createCompany } from "../actions/creat-company";
+import type { CreateCompanyState } from "../actions/creat-company";
 import Button from "@/components/button/button";
 import { cn } from "@/utils/helpers";
 
-const initialState = {};
+const initialState: CreateCompanyState = {};
 
 export default function CreateCompanyPage() {
   const [state, action, pending] = useActionState(createCompany, initialState);
-
+  const [phone, setPhone] = useState("09123456789");
   return (
     <div className="max-w-3xl mx-auto p-6">
       <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm rounded-lg shadow-md border border-slate-200 dark:border-slate-700">
@@ -48,7 +49,8 @@ export default function CreateCompanyPage() {
                   id="phone"
                   name="phone"
                   type="tel"
-                  value={"09123456789"}
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                   placeholder="(555) 555-5555"
                   className="mt-1 block w-full rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-400"
                 />
