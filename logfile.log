@@ -1,148 +1,47 @@
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  3000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  3000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  3000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  3000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  3000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  3000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  3000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  3000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  3000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  3000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  3000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  3000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  3000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  3000"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  3000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  3000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  3000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  3000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  3000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  3000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  3000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  3000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  3000"}
-{"level":"info","message":"Connected to MongoDB"}
+{"level":"info","message":"Attempting MongoDB connection to mongodb://mongo:27017/call-cleaner"}
+{"level":"warn","message":"MongoDB connection attempt 1 failed: getaddrinfo EAI_AGAIN mongo."}
+{"level":"warn","message":"MongoDB connection attempt 2 failed: getaddrinfo EAI_AGAIN mongo."}
+{"level":"error","message":"Could not connect to MongoDB after multiple attempts:"}
 {"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
 {"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  3000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  3000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  3001"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  5000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  5000"}
 {"level":"warn","message":"MongoDB connection attempt 1 failed: connect ECONNREFUSED 127.0.0.1:27017."}
 {"level":"warn","message":"MongoDB connection attempt 2 failed: connect ECONNREFUSED 127.0.0.1:27017."}
 {"level":"error","message":"Could not connect to MongoDB after multiple attempts:"}
-{"level":"error","message":"Make sure 'mongod' is running and listening on the configured port."}
-{"level":"error","message":"If you need transactions (sessions), start mongod with a replica set (e.g. --replSet rs0) and run 'rs.initiate()' in the mongo shell."}
 {"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  5000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  5000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  5000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  5000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  5000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  5000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  5000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  5000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  5000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  5000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  5000"}
-{"level":"info","message":"Connected to MongoDB"}
-{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
-{"level":"info","message":"Server running on port  5000"}
 {"level":"warn","message":"MongoDB connection attempt 1 failed: connect ECONNREFUSED 127.0.0.1:27017."}
 {"level":"warn","message":"MongoDB connection attempt 2 failed: connect ECONNREFUSED 127.0.0.1:27017."}
 {"level":"error","message":"Could not connect to MongoDB after multiple attempts:"}
-{"level":"error","message":"Make sure 'mongod' is running and listening on the configured port."}
-{"level":"error","message":"If you need transactions (sessions), start mongod with a replica set (e.g. --replSet rs0) and run 'rs.initiate()' in the mongo shell."}
+{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
+{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
+{"level":"warn","message":"MongoDB connection attempt 1 failed: connect ECONNREFUSED 127.0.0.1:27017."}
+{"level":"warn","message":"MongoDB connection attempt 2 failed: connect ECONNREFUSED 127.0.0.1:27017."}
+{"level":"error","message":"Could not connect to MongoDB after multiple attempts:"}
+{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
+{"level":"warn","message":"MongoDB connection attempt 1 failed: connect ECONNREFUSED 127.0.0.1:27017."}
+{"level":"warn","message":"MongoDB connection attempt 2 failed: connect ECONNREFUSED 127.0.0.1:27017."}
+{"level":"error","message":"Could not connect to MongoDB after multiple attempts:"}
+{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
+{"level":"info","message":"Connected to MongoDB"}
+{"level":"info","message":"Server running on port 5000"}
+{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
+{"level":"info","message":"Connected to MongoDB"}
+{"level":"info","message":"Server running on port 5000"}
+{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
+{"level":"warn","message":"MongoDB connection attempt 1 failed: connect ECONNREFUSED 127.0.0.1:27017."}
+{"level":"warn","message":"MongoDB connection attempt 2 failed: connect ECONNREFUSED 127.0.0.1:27017."}
+{"level":"error","message":"Could not connect to MongoDB after multiple attempts:"}
+{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
+{"level":"info","message":"Connected to MongoDB"}
+{"level":"info","message":"Server running on port 5000"}
+{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
+{"level":"warn","message":"MongoDB connection attempt 1 failed: connect ECONNREFUSED 127.0.0.1:27017."}
+{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
+{"level":"info","message":"Connected to MongoDB"}
+{"level":"info","message":"Server running on port 5000"}
+{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
+{"level":"warn","message":"MongoDB connection attempt 1 failed: connect ECONNREFUSED 127.0.0.1:27017."}
+{"level":"warn","message":"MongoDB connection attempt 2 failed: connect ECONNREFUSED 127.0.0.1:27017."}
+{"level":"error","message":"Could not connect to MongoDB after multiple attempts:"}
+{"level":"info","message":"Attempting MongoDB connection to mongodb://localhost:27017/call-cleaner"}
+{"level":"info","message":"Connected to MongoDB"}
+{"level":"info","message":"Server running on port 5000"}

@@ -16,7 +16,7 @@ interface data {
 }
 
 const Card = ({ data }: { data: data }) => {
-  console.log(data);
+
   return (
     <div className="flex flex-col relative bg-white rounded-md overflow-hidden shadow-md w-full">
       <div className="relative w-full h-48">

@@ -1,0 +1,14 @@
+FROM node:22
+
+WORKDIR /usr/src/app
+
+# کپی package.json اصلی و نصب dependencies
+COPY package*.json ./
+RUN npm install
+
+# کپی کل پروژه
+COPY . .
+
+WORKDIR /usr/src/app/app
+EXPOSE 3000
+CMD ["npm", "run", "dev"]

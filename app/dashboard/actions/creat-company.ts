@@ -1,11 +1,11 @@
 "use server";
 
-import mongoose from "mongoose";
 import { Company, companySchemaValidation } from "@/backend/src/models/company";
 import { validateJoi } from "@/backend/src/utils/validate-joi";
 import { Icompany } from "@/types/common";
 import { revalidateTag } from "next/cache";
 import { pickFormData } from "@/utils/helpers";
+import connectDB from "_lib/db";
 
 export interface CreateCompanyState {
   success?: boolean;
@@ -13,11 +13,7 @@ export interface CreateCompanyState {
   data?: Icompany;
 }
 
-async function connectDB() {
-  if (mongoose.connection.readyState === 1) return;
 
-  await mongoose.connect(process.env.MONGODB_URI!);
-}
 
 export async function createCompany(
   _: CreateCompanyState,
@@ -33,7 +29,6 @@ export async function createCompany(
     "logo",
     "address",
     "phone",
-    "rating",
   ]);
   const result = validateJoi<Icompany>(companySchemaValidation.body, payload);
 

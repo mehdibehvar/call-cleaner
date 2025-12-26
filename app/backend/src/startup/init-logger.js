@@ -13,7 +13,10 @@ const initLogger = (app) => {
     new winston.transports.File({ filename: "logfile.log" }),
     new winston.transports.MongoDB({
       level: "info",
-      db: `mongodb://localhost:27017/call-cleaner`,
+      db:
+        process.env.MONGO_URI ||
+        process.env.MONGODB_URI ||
+        "mongodb://mongo:27017/call-cleaner",
       collection: "logs",
       format: winston.format.json(),
     }),

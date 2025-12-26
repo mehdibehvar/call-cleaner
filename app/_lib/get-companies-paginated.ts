@@ -44,3 +44,14 @@ const getCompaniesAdvanced = async ({
 };
 
 export default getCompaniesAdvanced;
+/*
+| نیاز            | راه درست                 |
+| --------------- | ------------------------ |
+| فقط نمایش لیست  | Server Component + DB    |
+| فرم / mutation  | Server Action            |
+| client + server | API + fetch              |
+| ISR / caching   | fetch                    |
+| real-time UI    | client fetch / websocket |
+Server Action برای تغییر داده‌ست
+Server Component برای خواندن داده‌ست
+*/
