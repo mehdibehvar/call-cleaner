@@ -1,10 +1,10 @@
-import Icon from "@/components/icon/icon";
+import { UserCircleIcon } from "@heroicons/react/24/solid";
 
 const Header = () => {
   return (
     <header className="bg-white **:leading-0 rounded-full margin-auto  flex justify-between items-center p-4 w-full">
       <div>
-        <Icon size={32} color="var(--color-primary)" name="profile-circle" />
+        <UserCircleIcon className="size-8 text-primary" />
       </div>
       <div>
         <h1>
@@ -13,7 +13,7 @@ const Header = () => {
         </h1>
       </div>
       <div>
-        <Icon size={32} color="var(--color-primary)" name="profile-circle" />
+        <UserCircleIcon className="size-8 text-primary" />
       </div>
     </header>
   );

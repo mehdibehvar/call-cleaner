@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Icon from "../icon/icon";
 import { BellAlertIcon, BookmarkIcon, HomeIcon, UserIcon } from "@heroicons/react/24/outline";
 
 const Navbar = () => {
