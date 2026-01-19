@@ -1,4 +1,4 @@
-import Card from "../api/card/card";
+import Card from "./card/card";
 import Link from "next/link";
 import { Icompany } from "@/types/common";
 

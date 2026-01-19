@@ -1,7 +1,20 @@
 import Joi from "joi";
 import mongoose from "mongoose";
 const { Schema, model } = mongoose;
-
+const galleryItemSchema = new Schema({
+  url: {
+    type: String,
+    required: true,
+    validate: {
+      validator: function (v) {
+        return /^https?:\/\/.*\.(jpg|jpeg|png|gif)$/.test(v);
+      },
+      message: "Invalid gallery image URL",
+    },
+  },
+  caption: { type: String, maxlength: 200, default: "" },
+  order: { type: Number, default: 0 },
+});
 // Company Mongoose schema
 const companySchema = new Schema({
   name: {
@@ -40,6 +53,10 @@ const companySchema = new Schema({
       message: "Invalid logo URL",
     },
   },
+  gallery: {
+    type: [galleryItemSchema],
+    default: [],
+  },
   address: {
     type: String,
     required: true,
@@ -49,9 +66,9 @@ const companySchema = new Schema({
     type: String,
     required: true,
   },
-  rating:{
+  rating: {
     type: Number,
-    default:0,
+    default: 0,
   },
   createdAt: {
     type: Date,
@@ -61,7 +78,14 @@ const companySchema = new Schema({
 
 // Company model
 const Company = mongoose.models?.company || model("company", companySchema);
-
+const galleryItemValidation = Joi.object({
+  url: Joi.string()
+    .uri()
+    .regex(/^https?:\/\/.*\.(jpg|jpeg|png|gif)$/)
+    .required(),
+  caption: Joi.string().max(200).allow(""),
+  order: Joi.number().integer().min(0).default(0),
+});
 // Joi validation schema for requests
 const companySchemaValidation = {
   body: Joi.object({
@@ -79,6 +103,7 @@ const companySchemaValidation = {
     address: Joi.string().max(300).required(),
     phone: Joi.string(),
     rating: Joi.number().min(0).max(5).default(0),
+    gallery: Joi.array().items(galleryItemValidation).max(20).default([])
   }),
 };
 

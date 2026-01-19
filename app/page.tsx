@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import Products from "./components/products";
 import Spinner from "./components/spinner";
 import Link from "next/link";
-import { fetchCompanies } from "services/comps.service";
+import { fetchCompanies } from "_services/comps.service";
 
 export default async function Home() {
   /*

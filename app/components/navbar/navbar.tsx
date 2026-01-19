@@ -6,7 +6,7 @@ const Navbar = () => {
     <nav
       className="
         sticky
-        bottom-4
+        bottom-2
         w-full
         p-2
         bg-white

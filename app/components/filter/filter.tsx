@@ -1,7 +1,8 @@
 "use client";
 
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import {  useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import Input from "../input/input";
 
 const Filter = () => {
   const router = useRouter();
@@ -26,19 +27,16 @@ const Filter = () => {
   };
 
   if (!mounted) return null; // 🚨 hydration guard
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setSearch(e.target.value);
+    update("search", e.target.value);
+  };
 
   return (
-    <div className="flex gap-4 border-2 border-gray-300 rounded-md p-4 mb-2">
-      <input
-        placeholder="Search..."
-        value={search}
-        onChange={(e) => {
-          setSearch(e.target.value);
-          update("search", e.target.value);
-        }}
-      />
-
+    <div className="flex gap-2  rounded-md p-2 mb-2">
+      <Input size="sm" variant="outline" placeholder="Search..." onChange={handleChange}/>
       <select
+        className="text-sm"
         value={sort}
         onChange={(e) => {
           setSort(e.target.value);

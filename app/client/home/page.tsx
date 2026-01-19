@@ -7,29 +7,29 @@ import Products from "@/components/products";
 import Filter from "@/components/filter/filter";
 import { headers } from "next/headers";
 import Pagination from "@/components/paginaation/pagination";
-import getCompaniesAdvanced from "_lib/get-companies-paginated";
+import getCompaniesAdvanced from "_services/companies/get-companies-paginated";
 
 const items = [
   {
     id: 1,
-    src: "/images/carousel/carousel-1.jpg",
+    url: "/images/carousel/carousel-1.jpg",
     alt: "Slide 1",
-    title: "Slide 1",
-    url: "/",
+    caption: "Slide 1",
+    
   },
   {
     id: 2,
-    src: "/images/carousel/carousel-2.jpg",
+    url: "/images/carousel/carousel-2.jpg",
     alt: "Slide 2",
-    title: "Slide 2",
-    url: "/",
+    caption: "Slide 2",
+    
   },
   {
     id: 3,
-    src: "/images/carousel/carousel-3.jpeg",
+    url: "/images/carousel/carousel-3.jpeg",
     alt: "Slide 3",
-    title: "Slide 3",
-    url: "/",
+    caption: "Slide 3",
+    
   },
 ];
 
@@ -102,10 +102,10 @@ const Home = async ({
             page={page}
             totalPages={totalPages}
             query={{
-              sort: sort??"",
-              search: search??"",
-              city: city??"",
-              limit: limit??"",
+              sort: sort ?? "",
+              search: search ?? "",
+              city: city ?? "",
+              limit: limit ?? "",
             }}
           />
         </div>

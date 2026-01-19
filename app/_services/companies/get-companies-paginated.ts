@@ -1,6 +1,6 @@
 import { Company } from "@/backend/src/models/company";
-import connectDB from "./db";
-import { companyDTO, IcompanyDTO } from "./dto/company.dto";
+import { companyDTO, IcompanyDTO } from "../../_lib/dto/company.dto";
+import connectDB from "_lib/db";
 interface ISearchParams {
   page: number;
   limit: number;
@@ -18,7 +18,7 @@ const getCompaniesAdvanced = async ({
   companies: IcompanyDTO[];
   totalPages: number;
 }> => {
-  await connectDB();
+  await connectDB(); // اطمینان از اتصال به DB
   const filter: any = {};
   if (search) {
     filter.name = { $regex: search, $options: "i" };
@@ -34,7 +34,7 @@ const getCompaniesAdvanced = async ({
 
   const skip = (page - 1) * limit;
   const [companies, total] = await Promise.all([
-    Company.find(filter).skip(skip).limit(limit).sort(sortQuery).lean() ,
+    Company.find(filter).skip(skip).limit(limit).sort(sortQuery).lean(),
     Company.countDocuments(filter),
   ]);
   return {

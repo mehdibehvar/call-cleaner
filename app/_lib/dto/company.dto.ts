@@ -12,6 +12,7 @@
   rating: number;
   longDescription: string;
   email: string;
+  gallery: string[];
 }
 export const companyDTO = (company: any): IcompanyDTO => {
   return {
@@ -26,6 +27,7 @@ export const companyDTO = (company: any): IcompanyDTO => {
     rating: company.rating,
     longDescription: company.longDescription,
     email: company.email,
+    gallery: company.gallery || [],
   };
 };
 

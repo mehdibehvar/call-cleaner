@@ -5,7 +5,6 @@ import { validateJoi } from "@/backend/src/utils/validate-joi";
 import { Icompany } from "@/types/common";
 import { revalidateTag } from "next/cache";
 import { pickFormData } from "@/utils/helpers";
-import connectDB from "_lib/db";
 
 export interface CreateCompanyState {
   success?: boolean;
@@ -19,7 +18,6 @@ export async function createCompany(
   _: CreateCompanyState,
   formData: FormData
 ): Promise<CreateCompanyState> {
-  await connectDB();
 
   const payload = pickFormData(formData, [
     "name",
