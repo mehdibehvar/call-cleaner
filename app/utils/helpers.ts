@@ -12,7 +12,7 @@ export const pickFormData = <T extends readonly string[]>(
   keys: T
 ) =>
   Object.fromEntries(keys.map((k) => [k, formData.get(k)])) as {
-    [K in T[number]]: string | null;
+    [K in T[number]]: string | number | readonly string[] | undefined;
   };
 
 // const { title, content } = pickFormData(formData, ['title', 'content'])

@@ -23,6 +23,9 @@ export default async function Home() {
 
           <ul className="flex flex-col gap-2">
             <li>
+              <Link href="/auth/signup">signup</Link>
+            </li>
+            <li>
               <Link href="/client/home">home</Link>
             </li>
             <li>
@@ -33,9 +36,9 @@ export default async function Home() {
             </li>
           </ul>
         </nav>
-          <Suspense fallback={<Spinner />}>
-            <Products allCompenies={allCompenies} />
-          </Suspense>
+        <Suspense fallback={<Spinner />}>
+          <Products allCompenies={allCompenies} />
+        </Suspense>
       </div>
     </main>
   );

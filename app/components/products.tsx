@@ -5,8 +5,8 @@ import { Icompany } from "@/types/common";
 const Products = ({ allCompenies }: { allCompenies?: Icompany[] }) => {
   return (
     <>
-      {allCompenies?.map((comp) => (
-        <Link key={comp.id} href={`/client/company/${comp.id}`}>
+      {allCompenies?.map((comp,i) => (
+        <Link key={i} href={`/client/company/${comp.id}`}>
           <Card data={comp} />
         </Link>
       ))}

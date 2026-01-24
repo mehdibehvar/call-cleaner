@@ -76,6 +76,7 @@ const Company = async ({ params }: { params: Promise<{ slug: string }> }) => {
           <div className="col-span-2"></div>
         </div>
       )}
+      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
     </div>
   );
 };

@@ -10,6 +10,7 @@ export interface CreateCompanyState {
   success?: boolean;
   errors?: Record<string, string>;
   data?: Icompany;
+  values?:Record<string,string | number | readonly string[] | undefined>;
 }
 
 
@@ -28,10 +29,11 @@ export async function createCompany(
     "address",
     "phone",
   ]);
+  console.log(payload)
   const result = validateJoi<Icompany>(companySchemaValidation.body, payload);
 
   if (!result.success) {
-    return { errors: result.errors };
+    return { errors: result.errors , values: payload };
   }
 
   await Company.create({
@@ -44,10 +46,10 @@ export async function createCompany(
   revalidateTag("companies", "max");
   return {
     success: true,
-    data: {
-      ...result.data,
-      rating: 0,
-    },
+    // data: {
+    //   ...result.data,
+    //   rating: 0,
+    // },
   };
 }
 

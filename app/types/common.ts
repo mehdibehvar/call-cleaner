@@ -3,7 +3,7 @@
   name: string;
   email: string;
   phone: string;
-    shortDescription: string;
+  shortDescription: string;
   longDescription: string;
   logo: string;
   thumbnail: string;
