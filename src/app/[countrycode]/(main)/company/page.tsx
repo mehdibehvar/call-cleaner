@@ -1,12 +1,12 @@
 "use client";
 
 import { useActionState } from "react";
-import { createCompany } from "./actions/creat-company";
-import type { CreateCompanyState } from "./actions/creat-company";
-import Input from "../../components/input/input";
-import TextArea from "../../components/text-area/text-area";
-import SubmitButton from "../../components/button/submit-button";
-import FormCard from "../../components/card/form-card";
+import Input from "@/components/input/input";
+import FormCard from "@/components/card/form-card";
+import TextArea from "@/components/text-area/text-area";
+import SubmitButton from "@/components/button/submit-button";
+import { createCompany, CreateCompanyState } from "@/lib/_services/company-services/actions";
+
 
 const initialState: CreateCompanyState = { editing: false };
 

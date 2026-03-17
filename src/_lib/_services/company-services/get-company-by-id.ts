@@ -1,6 +1,6 @@
 import { Company } from "@/backend/src/models/company";
-import connectDB from "../../../_lib/db";
-import { companyDTO, type IcompanyDTO } from "../../../_lib/dto/company.dto";
+import connectDB from "../../db";
+import { companyDTO, type IcompanyDTO } from "../../dto/company.dto";
 
 const getCompany = async (id: string): Promise<IcompanyDTO | null> => {
   await connectDB();

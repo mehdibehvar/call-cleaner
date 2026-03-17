@@ -1,10 +1,11 @@
 "use server";
 
 import { Company, companySchemaValidation } from "@/backend/src/models/company";
-import { validateJoi } from "../../backend/src/utils/validate-joi";
-import { Icompany } from "../../../types/common";
+import { validateJoi } from "@/backend/src/utils/validate-joi";
+import { Icompany } from "@/types/global";
+import { pickFormData } from "@/utils/helpers";
 import { revalidateTag } from "next/cache";
-import { pickFormData } from "../../../_lib/utils/helpers";
+
 
 export interface CreateCompanyState {
   success?: boolean;

@@ -1,6 +1,6 @@
 import { Company } from "@/backend/src/models/company";
-import { companyDTO, IcompanyDTO } from "../../../_lib/dto/company.dto";
-import connectDB from "../../../_lib/db";
+import { companyDTO, IcompanyDTO } from "../../dto/company.dto";
+import connectDB from "../../db";
 interface ISearchParams {
   page: number;
   limit: number;

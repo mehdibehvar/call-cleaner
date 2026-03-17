@@ -1,5 +1,5 @@
-import { Carousel } from "../../../components/carousel/carousel";
-import { getCompany } from "../../../_services/companies/get-company-by-id";
+import { Carousel } from "@/components/carousel/carousel";
+import { getCompany } from "@/lib/_services/comps.service";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 export const fakeGallery = [

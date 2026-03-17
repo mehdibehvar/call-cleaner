@@ -50,7 +50,7 @@ export default async function Home({
               <Link href={`${slug.countrycode}/client/home`}>home</Link>
             </li>
             <li className="bg-primary-100 p-1 rounded-md">
-              <Link href="/company">dash</Link>
+              <Link href={`${slug.countrycode}/company`}>company</Link>
             </li>
             <li className="bg-primary-100 p-1 rounded-md">
               <a href="/test">ancher home</a>

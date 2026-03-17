@@ -6,3 +6,4 @@ const NotFound=()=>{
       </p>
     </div>
 }
+export default NotFound;
