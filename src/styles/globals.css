@@ -1,0 +1,96 @@
+@import "tailwindcss";
+@import "./animations.css";
+@import "./components.css";
+:root {
+  --background: #ffffff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-inter: var(--font-inter);
+  --color-danger: var(--color-red-500);
+  --color-success: var(--color-green-500);
+  --color-warning: var(--color-yellow-500);
+  --color-primary-50: #e6f2ff;
+  --color-primary-100: #cce4ff;
+  --color-primary-200: #99c9ff;
+  --color-primary-300: #66adff;
+  --color-primary-400: #3392ff;
+  --color-primary: #007aff; /* Base --color-primary-500 */
+  --color-primary-600: #0063cc;
+  --color-primary-700: #004c99;
+  --color-primary-800: #003566;
+  --color-primary-900: #001f33;
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray: #1f2937; /* Base --color-gray-500 */
+  --color-gray-600: #1b2430;
+  --color-gray-700: #111827;
+  --color-gray-800: #0b1220;
+  --color-gray-900: #030712;
+  --color-secondary-50: #f6fff0;
+  --color-secondary-100: #eeffe3;
+  --color-secondary-200: #e1fec6;
+  --color-secondary-300: #c9f5a2;
+  --color-secondary-400: #aeeb7b;
+  --color-secondary: #8fdd5a; /* Base --color-secondary-500 */
+  --color-secondary-600: #6eb844;
+  --color-secondary-700: #4f8f33;
+  --color-secondary-800: #356626;
+  --color-secondary-900: #1f3d17;
+  --color-primary-foreground: var(--color-gray-100);
+  --radius-base: var(--spacing-1);
+
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0c0b0b;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--color-text);
+  font-family: var(--font-inter);
+}
+
+.bubble {
+  --r: 25px; /* the radius */
+  --t: 30px; /* the size of the tail */
+  
+  width:auto;
+  padding: calc(2*var(--r)/3);
+  -webkit-mask: 
+    radial-gradient(var(--t) at var(--_d) 0,#0000 98%,#000 102%) 
+      var(--_d) 100%/calc(100% - var(--r)) var(--t) no-repeat,
+    conic-gradient(at var(--r) var(--r),#000 75%,#0000 0) 
+      calc(var(--r)/-2) calc(var(--r)/-2) padding-box, 
+    radial-gradient(50% 50%,#000 98%,#0000 101%) 
+      0 0/var(--r) var(--r) space padding-box;
+  background:var(--color-secondary-300);
+  color:var(--color-text-800);
+}
+.left {
+  --_d: 0%;
+  border-left: var(--t) solid #0000;
+  margin-right: var(--t);
+  place-self: start;
+}
+.right {
+  --_d: 100%;
+  border-right: var(--t) solid #0000;
+  margin-left: var(--t);
+  place-self: end;
+}
+
+*{
+  font-family: inherit;
+}

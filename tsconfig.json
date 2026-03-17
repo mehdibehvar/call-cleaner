@@ -18,13 +18,15 @@
         "name": "next"
       }
     ],
-    "baseUrl": "app/",
+    "baseUrl": "./src",
     "paths": {
-      "@/components/*": ["components/*"],
-      "@/utils/*": ["utils/*"],
-      "@/assets/*": ["assets/*"],
+      "@/components/*": ["modules/common/components/*"],
+      "@/utils/*": ["_lib/utils/*"],
+      "@/lib/*":["_lib/*"],
+      "@/assets/*": ["app/assets/*"],
       "@/types/*": ["types/*"],
-      "@/backend/*": ["backend/*"]
+      "@/backend/*": ["app/backend/*"],
+       "@/styles/*": ["styles/*"],
     }
   },
   "include": [
@@ -34,6 +36,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-  ],
+, "src/_lib/stores/global-store.js"  ],
   "exclude": ["node_modules"]
 }
