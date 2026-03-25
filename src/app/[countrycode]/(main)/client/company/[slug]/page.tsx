@@ -48,8 +48,10 @@ export const fakeGallery = [
 const Company = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const slug = await params;
 
-  const company = await getCompany(slug.slug);
-  if (!company) notFound();
+  const result = await getCompany(slug.slug);
+  console.log(result)
+  if (!result.ok) notFound();
+  const company=result.data
   //To Do: dynamic seo
   return (
     <div className="space-y-2 md:space-y-4">

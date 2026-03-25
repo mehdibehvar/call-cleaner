@@ -3,7 +3,7 @@ import Image from "next/image";
 import Button from "../button/button";
 
 interface data {
-  id: string;
+  _id: string;
   name: string;
   shortDescription: string;
   longDescription: string;

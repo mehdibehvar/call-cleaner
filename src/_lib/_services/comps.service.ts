@@ -8,7 +8,8 @@ cache: 'force-cache'
 یا خارج از کامپوننت تعریف شده باشه
 */
 
-import { fetchApi } from "../utils/fetch-api";
+import { safeApiFetch } from "@/utils/http-client";
+import { IcompanyDTO } from "../dto/company.dto";
 
 // export const fetchComps = fetch("http://localhost:3000/api/v1/company").then(
 //   (res) => res.json()
@@ -34,14 +35,13 @@ import { fetchApi } from "../utils/fetch-api";
 // 👉 همون لحظه صفحه Home آپدیت بشه (بدون رفرش دستی)
 // services/comps.ts
 export async function fetchCompanies() {
-  const res = await fetchApi({
-    url: "/api/v1/company",
+  const res = await safeApiFetch<IcompanyDTO[]>("/api/v1/company", {
     next: {
       tags: ["companies"],
       revalidate: 60,
     },
   });
-  return res.json();
+  return res;
 }
 
 ////Best Practice نهایی 🏆
@@ -51,9 +51,8 @@ export async function fetchCompanies() {
 // 🔄 بعدش → revalidatePath
 
 export async function getCompany(id: string) {
-  const res = await fetchApi({
-    url: `/api/v1/company/${id}`,
+  const res = await safeApiFetch<IcompanyDTO>(`/api/v1/company/${id}`, {
     cache: "no-store",
   });
-  return res.json();
+  return res;
 }

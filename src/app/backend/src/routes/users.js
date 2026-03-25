@@ -3,7 +3,6 @@ import { User } from "../models/user.js";
 import validate from "../utils/validate.js";
 import mongoose from "mongoose";
 import _ from "lodash";
-import bcrypt from "bcrypt";
 
 import authMiddleware from "../middlewares/auth-middleware.js";
 import Joi from "joi";
@@ -20,7 +19,7 @@ userRouter.get("/", async (req, res) => {
 });
 
 userRouter.get("/me", authMiddleware, async (req, res) => {
-  const id = req.user.id;
+  const id = req.user._id;
   const user = await User.findById(id);
   res.status(200).json(user);
 });

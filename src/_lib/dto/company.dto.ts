@@ -1,7 +1,7 @@
 // domain model (mongoose) رو از UI contract جدا می‌کنی.
 
  export interface IcompanyDTO {
-  id: string;
+  _id: string;
   name: string;
   shortDescription: string;
   thumbnail: string;
@@ -16,7 +16,7 @@
 }
 export const companyDTO = (company: any): IcompanyDTO => {
   return {
-    id: company._id.toString(),
+    _id: company._id.toString(),
     name: company.name,
     shortDescription: company.shortDescription,
     thumbnail: company.thumbnail,

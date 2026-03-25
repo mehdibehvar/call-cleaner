@@ -6,7 +6,7 @@ import getCompaniesAdvanced from "@/lib/_services/company-services/get-companies
 import { Carousel } from "@/components/carousel/carousel";
 import Button from "@/components/button/button";
 import Filter from "@/components/filter/filter";
-import Products from "@/components/products";
+import Products from "modules/company/components/compenies";
 import Pagination from "@/components/paginaation/pagination";
 const descs = [
   `1)this page is showing a list of products or items so we had better to make it a server
@@ -59,8 +59,9 @@ interface IProps {
     search?: string;
     city?: string;
   };
+  params:Promise<{countrycode:string}>
 }
-const Home = async ({ searchParams }: IProps) => {
+const Home = async ({ searchParams,params }: IProps) => {
   // Read request headers first to satisfy Next's prerender-time checks
   headers();
   const { page: searchPage, limit, sort, search, city } = await searchParams;
@@ -74,6 +75,7 @@ const Home = async ({ searchParams }: IProps) => {
     search,
     city,
   });
+  const slug=await params;
   return (
     <main className="min-h-screen  space-y-4 md:space-y-8 py-4 md:py-8">
       <section>
@@ -112,7 +114,7 @@ const Home = async ({ searchParams }: IProps) => {
         <SectionHeader title="companies" />
         <Filter />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <Products allCompenies={companies} />
+          <Products allCompenies={companies} countrycode={slug.countrycode}/>
         </div>
         <div className="flex justify-center">
           <Pagination

@@ -1,4 +1,5 @@
 import FormCard from "@/components/card/form-card";
+import { retriveUser } from "@/lib/_data/users";
 
 export default async function AccountLayout({
   login,
@@ -7,37 +8,18 @@ export default async function AccountLayout({
   login: React.ReactNode;
   dashboard: React.ReactNode;
 }) {
-  const retriveCustomer = async (): Promise<{
-    isLogin: boolean;
-    message: string;
-  } | null> => {
-    return new Promise((resolve, reject) => {
-      const success = false;
-      if (success) {
-        resolve({
-          isLogin: true,
-          message: "you are login",
-        });
-      } else {
-        resolve({
-          isLogin: false,
-          message: "please login first",
-        });
-      }
-    });
-  };
-  const customer = await retriveCustomer().catch((err)=>{
-    console.log(err)
+
+  const result = await retriveUser().catch((err) => {
+    console.log(err);
   });
+  const user=result.ok?result.data:null;
   return (
     <>
-      {customer ? (
-        <FormCard title={customer.isLogin ? "dashboard" : "login"}>
-          {customer.isLogin ? dashboard : login}
+
+        <FormCard title={user ? `Hi ${user.name}` : "login"}>
+          {user ? dashboard : login}
         </FormCard>
-      ) : (
-        <div>somthing went wrong try again</div>
-      )}
+      
     </>
   );
 }

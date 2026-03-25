@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import Link from "next/link";
 import { fetchCompanies } from "_lib/_services/comps.service";
-import Products from "@/components/products";
+import Products from "modules/company/components/compenies";
 import Spinner from "@/components/spinner";
 import { cn } from "@/utils/helpers";
 import Description from "@/components/description/Description";
@@ -30,11 +30,18 @@ export default async function Home({
 ادامه‌ی رندر از همون نقطه انجام میشه
 کل HTML یک‌بار ساخته میشه و تمیز میاد سمت کلاینت
 */
-  const allCompenies = await fetchCompanies();
+  const result = await fetchCompanies();
   //const allCompenies=use(fetchComps)// this is not good approach because it will re-render the page on
   // after use notice that the promise is not resolved
   // so it suspends the page and waits for the promise to resolve
   const slug = await params;
+  if (!result.ok) {
+    return (
+      <div className="flex items-center justify-center h-full w-full ">
+        <p className="text-danger p-2">something has went wrong try again</p>
+      </div>
+    );
+  }
   return (
     <main className="flex flex-col items-center justify-center">
       <header className="w-full flex flex-col justify-center mb-2">
@@ -60,7 +67,7 @@ export default async function Home({
       </header>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <Suspense fallback={<Spinner />}>
-          <Products allCompenies={allCompenies} />
+          <Products allCompenies={result.data} countrycode={slug.countrycode}/>
         </Suspense>
       </div>
       <Description discs={discs} />

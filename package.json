@@ -9,11 +9,14 @@
     "start": "next start",
     "lint": "eslint",
     "test": "jest --watchAll",
-    "start-server": "nodemon ./app/backend/server.js",
+    "start-server": "nodemon ./src/app/backend/server.js",
     "dev:full": "pnpm start-server & pnpm dev"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
+    "@medusajs/icons": "latest",
+    "@medusajs/js-sdk": "latest",
+    "@medusajs/ui": "latest",
     "bcrypt": "^6.0.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

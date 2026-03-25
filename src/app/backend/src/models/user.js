@@ -33,7 +33,7 @@ export const userSchema = new Schema({
   name: {
     type: String,
     required: true,
-  },
+  }
 });
 ///information expert principle
 userSchema.methods.generateAuthToken = function () {
