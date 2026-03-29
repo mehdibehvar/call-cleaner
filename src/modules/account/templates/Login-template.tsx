@@ -10,10 +10,9 @@ const LoginTemplate = () => {
   const [currentView, setCurrentView] = useState("sign-in");
   return (
     <>
-      {currentView === "sign-in" ? (
-        <Login setCurrentView={setCurrentView} />
-      ) : (
-        <Register setCurrentView={setCurrentView}  />
+      {currentView === "sign-in" && <Login setCurrentView={setCurrentView} />}
+      {currentView === "register" && (
+        <Register setCurrentView={setCurrentView} />
       )}
     </>
   );

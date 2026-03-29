@@ -3,7 +3,6 @@ import Link from "next/link";
 import { fetchCompanies } from "_lib/_services/comps.service";
 import Products from "modules/company/components/compenies";
 import Spinner from "@/components/spinner";
-import { cn } from "@/utils/helpers";
 import Description from "@/components/description/Description";
 const discs = [
   ` we use fetch here for getting list from server by making a request to
@@ -18,6 +17,9 @@ const discs = [
           page from that point and send it to client. when a new product or item is added or
           created in the database we should revalidate this path or tag in the
           method or functions that we have written for creating new items.`,
+  `  //const allCompenies=use(fetchComps)// this is not good approach because it will re-render the page on
+  // after use notice that the promise is not resolved
+  // so it suspends the page and waits for the promise to resolve`,
 ];
 export default async function Home({
   params,
@@ -31,7 +33,7 @@ export default async function Home({
 کل HTML یک‌بار ساخته میشه و تمیز میاد سمت کلاینت
 */
   const result = await fetchCompanies();
-  //const allCompenies=use(fetchComps)// this is not good approach because it will re-render the page on
+  //const allCompenies=use(fetchCompanies)// this is not good approach because it will re-render the page on
   // after use notice that the promise is not resolved
   // so it suspends the page and waits for the promise to resolve
   const slug = await params;
@@ -67,7 +69,7 @@ export default async function Home({
       </header>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <Suspense fallback={<Spinner />}>
-          <Products allCompenies={result.data} countrycode={slug.countrycode}/>
+          <Products allCompenies={result.data} countrycode={slug.countrycode} />
         </Suspense>
       </div>
       <Description discs={discs} />

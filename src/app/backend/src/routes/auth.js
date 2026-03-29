@@ -21,6 +21,6 @@ const passwordLoginSchema = {
 authRouter.post("/signup", validate(userSchemaValidation), signUpAuth);
 
 // Password login
-authRouter.post("/password", validate(passwordLoginSchema), passwordLoginController);
+authRouter.post("/password-login", validate(passwordLoginSchema), passwordLoginController);
 
 export default authRouter;

@@ -8,8 +8,8 @@ export async function setPasswordController(req, res) {
     req.user && req.user._id
       ? req.user._id
       : req.user && req.user.id
-      ? req.user.id
-      : null;
+        ? req.user.id
+        : null;
   if (!userId) return res.status(401).json({ message: "Unauthorized" });
   const { password } = req.validatedBody;
   try {
@@ -37,8 +37,8 @@ export async function changePasswordController(req, res) {
     req.user && req.user._id
       ? req.user._id
       : req.user && req.user.id
-      ? req.user.id
-      : null;
+        ? req.user.id
+        : null;
   if (!userId) return res.status(401).json({ message: "Unauthorized" });
   const { currentPassword, newPassword } = req.validatedBody;
   try {
@@ -57,4 +57,37 @@ export async function changePasswordController(req, res) {
     winston.warn("changePasswordController error: " + (err.message || err));
     return res.status(500).json({ message: "Server error" });
   }
+}
+
+export async function updateUserNameController(req, res) {
+  const userId =
+    req.user && req.user._id
+      ? req.user._id
+      : req.user && req.user.id
+        ? req.user.id
+        : null;
+  const payload = req.validatedBody;
+  const user = await User.findById(userId);
+  if (!user) return res.status(404).json({ message: "User not found" });
+  user.name = payload.name;
+  await user.save();
+  return res
+    .status(200)
+    .json({ message: `your name has changed to ${user.name}` });
+}
+export async function updateUserEmailController(req, res) {
+  const userId =
+    req.user && req.user._id
+      ? req.user._id
+      : req.user && req.user.id
+        ? req.user.id
+        : null;
+  const payload = req.validatedBody;
+  const user = await User.findById(userId);
+  if (!user) return res.status(404).json({ message: "User not found" });
+  user.email = payload.email;
+  await user.save();
+  return res
+    .status(200)
+    .json({ message: `your email has changed to ${user.email}` });
 }

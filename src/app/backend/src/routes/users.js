@@ -9,6 +9,8 @@ import Joi from "joi";
 import {
   setPasswordController,
   changePasswordController,
+  updateUserNameController,
+  updateUserEmailController,
 } from "../controllers/users.controller.js";
 
 const userRouter = express.Router();
@@ -45,7 +47,7 @@ userRouter.post(
   "/set-password",
   authMiddleware,
   validate(setPasswordSchema),
-  setPasswordController
+  setPasswordController,
 );
 
 // Change password (authenticated). Requires currentPassword + newPassword.
@@ -59,7 +61,38 @@ userRouter.post(
   "/change-password",
   authMiddleware,
   validate(changePasswordSchema),
-  changePasswordController
+  changePasswordController,
 );
-
+const updateNameSchema = {
+  body: Joi.object({
+    name: Joi.string().min(3).required().messages({
+      "string.base": "Name must be a string",
+      "string.empty": "Name cannot be empty",
+      "string.min": "Name must be at least 3 characters long",
+      "any.required": "Name is required",
+    }),
+  }),
+};
+userRouter.put(
+  "/update-name",
+  authMiddleware,
+  validate(updateNameSchema),
+  updateUserNameController,
+);
+const updateEmailSchema = {
+  body: Joi.object({
+    email: Joi.string().min(3).required().messages({
+      "string.base": "Email must be a string",
+      "string.empty": "Email cannot be empty",
+      "string.min": "Email must be at least 3 characters long",
+      "any.required": "Email is required",
+    }),
+  }),
+};
+userRouter.put(
+  "/update-email",
+  authMiddleware,
+  validate(updateEmailSchema),
+  updateUserEmailController,
+);
 export default userRouter;

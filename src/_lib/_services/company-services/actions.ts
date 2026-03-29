@@ -29,7 +29,6 @@ export async function createCompany(
     "address",
     "phone",
   ]);
-  console.log(payload);
   const result = validateJoi<Icompany>(companySchemaValidation.body, payload);
 
   if (!result.success) {

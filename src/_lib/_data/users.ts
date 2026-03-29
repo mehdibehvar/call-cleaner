@@ -1,4 +1,4 @@
-import { userRoutes } from "../api/routes";
+import { userRoutes } from "../api-routes/routes";
 import { getAuthHeaders, getCacheOptions } from "./cookies";
 import { safeApiFetch } from "@/utils/http-client";
 
@@ -8,13 +8,13 @@ export const retriveUser = async (): Promise<any | null> => {
     ...authHeaders,
   };
   const next = {
-    ...(await getCacheOptions("users")),
+    ...(await getCacheOptions("users")),revalidate: 60
   };
   const response = await safeApiFetch(userRoutes.getMeUsers, {
     method: "get",
     headers,
     next,
-    cache: "force-cache",
+    cache: "force-cache", ///this cache the userinfo you can disable it by :cache:  no-store
   });
-  return  response;
+  return response;
 };

@@ -9,12 +9,13 @@ export const getAuthHeaders = async (): Promise<
     if (!token) return {};
     return {
       authorization: `Bearer ${token}`,
-      "x-auth-token":token
+      "x-auth-token": token,
     };
   } catch (err) {
     return {};
   }
 };
+
 export const getCacheTag = async (tag: string): Promise<string> => {
   try {
     const cookieStore = await cookies();
@@ -34,7 +35,7 @@ export const getCacheOptions = async (
     return {};
   }
   const cacheTag = await getCacheTag(tag);
-  if (cacheTag) {
+  if (!cacheTag) {
     return {};
   }
   return { tags: [`${cacheTag}`] };
@@ -43,6 +44,12 @@ export const getCacheOptions = async (
 export const setAuthToken = async (token: string) => {
   const cookieStore = await cookies();
   cookieStore.set("call-cleaner-jwt", token, {
+    maxAge: 60 * 60 * 24 * 7,
+    httpOnly: true,
+    sameSite: "strict",
+    secure: process.env.NODE_ENV === "production",
+  });
+  cookieStore.set("call-cleaner-id", "123456", {
     maxAge: 60 * 60 * 24 * 7,
     httpOnly: true,
     sameSite: "strict",

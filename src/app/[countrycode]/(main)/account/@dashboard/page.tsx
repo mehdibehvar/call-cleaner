@@ -1,5 +1,5 @@
 import { retriveUser } from "@/lib/_data/users"
-import Overview from "modules/account/components/overview"
+import Overview from "@/modules/account/components/dashboard/overview"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 export const metadata: Metadata = {

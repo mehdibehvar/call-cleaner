@@ -1,69 +1,38 @@
-//  Looks like you're trying to keep the input values in your registration form even when there's an error,
-//  which is a super common and good practice. You're on the right track with `useActionState` in React!
 
-// From what I see in your code, you're already using `state.data.values?.name` to set the `defaultValue` for the `name` input.
-// That's exactly the right idea!
-//  The issue might be that you're not doing it for all the inputs,
-// or maybe how the `signUpUser` action is returning the values.
-
-// Let's tweak this so it works for all your inputs.
-
-// ### Keeping State on Error
-
-// The main idea is to set the `defaultValue` of each input to the corresponding
-// value from `state.data.values` if the action was successful, or from `state.errors`
-// if it failed and you want to repopulate the fields with the user's previous input.
-// However, with `useActionState`, the `state` object usually contains the *result* of the action.
-// If the action failed, the `state` might not directly contain the previous input values unless
-// your `signUpUser` action is designed to return them.
-
-// A common pattern is to have your action function return an object that includes both the
-// success/error status and the *values that were submitted* along with any errors.
-
-// Here’s how you can adjust it, assuming your `signUpUser` action returns something like
-//  `{ ok: boolean, data: { values?: Record<string, any> }, errors?: Record<string, string> }`:
-
-// ```jsx
 import Input from "@/components/input/input";
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 import SubmitButton from "@/components/button/submit-button";
 import { signUpUser } from "@/lib/_services/account-services/login-actions"; // Assuming this returns { ok: boolean, data: { values?: Record<string, any> }, errors?: Record<string, string>, error?: string }
 import { LOGIN_VIEW } from "modules/account/templates/Login-template";
 import Button from "@/components/button/button";
 import ErrorMessageDisply from "@/components/error-display";
+import { getFieldError, getInputValue } from "@/utils/helpers";
 
 interface IProps {
   setCurrentView: (view: LOGIN_VIEW) => void;
 }
 
 const Register = ({ setCurrentView }: IProps) => {
-  // Initialize state with a default structure that includes 'values'
+  // Initialize state with a default structure 
   const initialState = {
     ok: false,
     data: null,
     errors: undefined,
     error: undefined,
-    defaultValue:undefined
+    defaultValue: undefined,
   };
   const [state, action, pending] = useActionState(signUpUser, initialState);
-console.log(state)
-  // Helper to get value, prioritizing errors if available for repopulation
-  const getInputValue = (fieldName: string) => {
-    // If there are errors, use the value from errors (assuming errors object contains submitted values on failure)
-    // NOTE: This depends HEAVILY on how `signUpUser` returns its data.
-    // A more robust approach is if `signUpUser` returns { ok: boolean, data: { values: Record<string, any>, errors: Record<string, string> } }
-    // For now, we assume state.data.values holds the previous input if action succeeded or if it returned values on failure
-    return state?.defaultValues?.[fieldName];
-  };
 
-  // Helper to get error message for a specific field
-  const getFieldError = (fieldName: string) => {
-    return !state.ok ? state.errors?.[fieldName] : undefined;
-  };
-  if (state.ok) {
-    alert(state.data.message)
-    setCurrentView(LOGIN_VIEW.SIGN_IN);
-  }
+///here we have got to use useEffect hook to handle side effects.here the state of 
+/// comp has changed and as useEffect can handle mounting and updating and unmounting of a component 
+  useEffect(() => {
+    if (state.ok) {
+      alert(state.data.message);
+      setCurrentView(LOGIN_VIEW.SIGN_IN);
+      return;
+    }
+  }, [state.ok, setCurrentView]);
+
   return (
     <div className="space-y-2">
       <form action={action} className="space-y-3">
@@ -71,26 +40,26 @@ console.log(state)
           type="text"
           name="name"
           // Use the helper to get the value
-          defaultValue={getInputValue("name")}
+          defaultValue={getInputValue("name",state)}
           placeholder="Name"
-          error={getFieldError("name")}
+          error={getFieldError("name",state)}
           variant="outline"
         />
         <Input
           type="tel"
           name="mobile"
-          defaultValue={getInputValue("mobile")}
+          defaultValue={getInputValue("mobile",state)}
           placeholder="Mobile"
-          error={getFieldError("mobile")}
+          error={getFieldError("mobile",state)}
           variant="outline"
           autoComplete="tel"
         />
         <Input
           type="email"
           name="email"
-          defaultValue={getInputValue("email")}
+          defaultValue={getInputValue("email",state)}
           placeholder="Email"
-          error={getFieldError("email")}
+          error={getFieldError("email",state)}
           variant="outline"
           autoComplete="email"
         />
@@ -128,7 +97,7 @@ console.log(state)
           type="password"
           name="password"
           placeholder="Password"
-          error={getFieldError("password")}
+          error={getFieldError("password",state)}
           variant="outline"
           autoComplete="new-password"
         />
@@ -148,7 +117,7 @@ console.log(state)
         </Button>
       </div>
       {/* Display general error if no specific field errors */}
-      {!state.ok && !state.errors ? (
+      {!state.ok && state.error && !state.errors ? (
         <ErrorMessageDisply errorMessage={state.error} />
       ) : null}
     </div>
@@ -186,4 +155,4 @@ export default Register;
 
 // Try implementing these changes, and pay close attention to what your `signUpUser` function actually returns in the `state` object when errors occur. That's usually where the problem lies!
 
-// Let me know how it goes! 😊
+

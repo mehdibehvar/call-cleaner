@@ -1,5 +1,5 @@
 import { getApiBaseUrl } from "./env";
-import { normalizePath, parseJsonOrNull } from "./helpers";
+import { getCookie, normalizePath, parseJsonOrNull } from "./helpers";
 import onError, { ApiError } from "./onError";
 
 export const API_BASE = getApiBaseUrl();
@@ -24,8 +24,9 @@ export async function apiFetch<T = any>(
   init: RequestInit = {},
 ): Promise<T> {
   const url = normalizePath(API_BASE, path);
+  ///if the request is in the client not in the server
   const token =
-    typeof window !== "undefined" ? localStorage.getItem("auth_token") : null;
+    typeof window !== "undefined" ? getCookie("call-cleaner-jwt") : null;
 
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
@@ -82,7 +83,7 @@ export function post<T = any>(path: string, body?: any) {
 }
 
 export function put<T = any>(path: string, body?: any) {
-  return safeApiFetch<T>(path, { method: "PUT", body: JSON.stringify(body) });
+  return safeApiFetch<T>(path, { method: "PUT", body: JSON.stringify(body)});
 }
 
 export function del<T = any>(path: string) {
