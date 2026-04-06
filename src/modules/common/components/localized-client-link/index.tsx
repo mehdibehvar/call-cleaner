@@ -1,20 +1,21 @@
 "use client"
+import { cn } from "@/utils/helpers";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 
 const LocalizedClientLink = ({
-  path,
+  href,
   children,
   className,        
   ...props
 }: {
-  path: string;
+  href: string;
   children: React.ReactNode;
-  className:string
+  className?:string
 }) => {
   const {countrycode} = useParams();
 
-  return <Link href={`/${countrycode}/${path}`} {...props}>{children}</Link>;
+  return <Link className={cn("text-primary-400",className)} href={`/${countrycode}/${href}`} {...props}>{children}</Link>;
 };
 
 export default LocalizedClientLink;

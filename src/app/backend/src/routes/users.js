@@ -1,5 +1,5 @@
 import express from "express";
-import { User } from "../models/user.js";
+import { User, userSchemaValidation } from "../models/user.js";
 import validate from "../utils/validate.js";
 import mongoose from "mongoose";
 import _ from "lodash";
@@ -11,6 +11,7 @@ import {
   changePasswordController,
   updateUserNameController,
   updateUserEmailController,
+  updateUserController,
 } from "../controllers/users.controller.js";
 
 const userRouter = express.Router();
@@ -94,5 +95,33 @@ userRouter.put(
   authMiddleware,
   validate(updateEmailSchema),
   updateUserEmailController,
+);
+const updateUserSchema = {
+  body: Joi.object({
+    name: Joi.string().min(3).required().messages({
+      "string.base": "Name must be a string",
+      "string.empty": "Name cannot be empty",
+      "string.min": "Name must be at least 3 characters long",
+      "any.required": "Name is required",
+    }),
+    mobile: Joi.string().min(3).required().messages({
+      "string.base": "Mobile must be a string",
+      "string.empty": "Mobile cannot be empty",
+      "string.min": "Mobile must be at least 3 characters long",
+      "any.required": "Mobile is required",
+    }),
+    email: Joi.string().min(3).required().messages({
+      "string.base": "Email must be a string",
+      "string.empty": "Email cannot be empty",
+      "string.min": "Email must be at least 3 characters long",
+      "any.required": "Email is required",
+    }),
+  }),
+};
+userRouter.put(
+  "/update-user",
+  authMiddleware,
+  validate(updateUserSchema),
+  updateUserController,
 );
 export default userRouter;

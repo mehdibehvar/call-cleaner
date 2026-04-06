@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import { User } from "../models/user.js";
 import winston from "winston";
+import _ from "lodash";
 
 export async function setPasswordController(req, res) {
   // User must be authenticated
@@ -90,4 +91,20 @@ export async function updateUserEmailController(req, res) {
   return res
     .status(200)
     .json({ message: `your email has changed to ${user.email}` });
+}
+export async function updateUserController(req, res) {
+  const userId =
+    req.user && req.user._id
+      ? req.user._id
+      : req.user && req.user.id
+        ? req.user.id
+        : null;
+  const payload = req.validatedBody;
+  let user = await User.findById(userId);
+  if (!user) return res.status(404).json({ message: "User not found" });
+  user.name = payload.name;
+  user.email = payload.email;
+  user.mobile = payload.mobile;
+  await user.save();
+  return res.status(200).json({ message: `your information updated` });
 }

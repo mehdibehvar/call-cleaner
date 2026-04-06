@@ -9,7 +9,7 @@ import { create } from 'zustand'
 // }
 
 const useGlobalStore  = create((set) => ({
-  countryCode: "UK",
+  countryCode: "uk",
   setCountryCode: (code) => set({ countryCode: code }),
   dark: false,
   toggleDark: () => set((state) => ({ dark: !state.dark })),

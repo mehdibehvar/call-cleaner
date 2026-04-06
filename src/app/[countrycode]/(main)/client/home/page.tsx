@@ -1,7 +1,7 @@
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { headers } from "next/headers";
-import SectionHeader from "../components/section-header";
+import SectionHeader from "../../../../../modules/client/components/section-header";
 import getCompaniesAdvanced from "@/lib/_services/company-services/get-companies-paginated";
 import { Carousel } from "@/components/carousel/carousel";
 import Button from "@/components/button/button";
@@ -59,9 +59,9 @@ interface IProps {
     search?: string;
     city?: string;
   };
-  params:Promise<{countrycode:string}>
+  params: Promise<{ countrycode: string }>;
 }
-const Home = async ({ searchParams,params }: IProps) => {
+const Home = async ({ searchParams, params }: IProps) => {
   // Read request headers first to satisfy Next's prerender-time checks
   headers();
   const { page: searchPage, limit, sort, search, city } = await searchParams;
@@ -75,7 +75,7 @@ const Home = async ({ searchParams,params }: IProps) => {
     search,
     city,
   });
-  const slug=await params;
+  const slug = await params;
   return (
     <main className="min-h-screen  space-y-4 md:space-y-8 py-4 md:py-8">
       <section>
@@ -114,7 +114,7 @@ const Home = async ({ searchParams,params }: IProps) => {
         <SectionHeader title="companies" />
         <Filter />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <Products allCompenies={companies} countrycode={slug.countrycode}/>
+          <Products allCompenies={companies} countrycode={slug.countrycode} />
         </div>
         <div className="flex justify-center">
           <Pagination

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { BellAlertIcon, BookmarkIcon, HomeIcon, UserIcon } from "@heroicons/react/24/outline";
+import LocalizedClientLink from "../localized-client-link";
 
 const Navbar = () => {
   return (
@@ -21,32 +22,32 @@ const Navbar = () => {
         **:text-primary
       "
     >
-      <Link
-        href="/client/profile"
+      <LocalizedClientLink
+        href="/account/profile"
         className="flex items-center justify-center "
       >
         <UserIcon className="size-8"  />
-      </Link>
+      </LocalizedClientLink>
 
-      <Link
+      <LocalizedClientLink
         href="/client/booking"
         className="flex items-center justify-center"
       >
         <BookmarkIcon className="size-8" />
-      </Link>
+      </LocalizedClientLink>
 
-      <Link
+      <LocalizedClientLink
         href="/client/notifications"
         className="flex items-center justify-center"
       >
        <BellAlertIcon className="size-8" />
-      </Link>
-      <Link
+      </LocalizedClientLink>
+      <LocalizedClientLink
         href="/client/home"
         className="flex items-center justify-center"
       >
         <HomeIcon className="size-8" />
-      </Link>
+      </LocalizedClientLink>
       
     </nav>
   );

@@ -13,7 +13,6 @@ const initialState = {
   errors: undefined,
 };
 const ProfielName = ({ user }: { user: any }) => {
-  console.log(user);
   const [state, action, pending] = useActionState(updateName, initialState);
   return (
     <FormCard title="update name form">

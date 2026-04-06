@@ -20,9 +20,10 @@ export default async function AccountLayout({
   return (
     <>
       <div className="min-h-svh">
-        <FormCard title={user ? `Hi ${user.name}` : "login"}>
+        <header className="p-4 flex justify-center  items-center bg-secondary-300 text-primary">
+          <h1 className="text-3xl"> {user?"Dashboard":"login"}</h1>
+        </header>
           {user ? dashboard : login}
-        </FormCard>
       </div>
     </>
   );

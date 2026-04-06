@@ -1,6 +1,7 @@
 "use server";
 import { getAuthHeaders, getCacheTag } from "@/lib/_data/cookies";
 import { userRoutes } from "@/lib/api-routes/routes";
+import { pickFormData } from "@/utils/helpers";
 import { put, safeApiFetch } from "@/utils/http-client";
 import { revalidateTag } from "next/cache";
 
@@ -45,6 +46,25 @@ export const updateEmail = async (
     method: "put",
     headers,
     body: JSON.stringify({ email }),
+  });
+  const cacheTag = await getCacheTag("users");
+  revalidateTag(cacheTag, "max");
+  return res;
+};
+
+export const updateUser = async (
+  _prevState: ActionResponse | undefined,
+  formData: FormData,
+) => {
+  const authHeaders = await getAuthHeaders();
+  const headers = {
+    ...authHeaders,
+  };
+  const payload = pickFormData(formData,["name","email","mobile"])
+  const res = await safeApiFetch(userRoutes.updateUser, {
+    method: "put",
+    headers,
+    body: JSON.stringify(payload),
   });
   const cacheTag = await getCacheTag("users");
   revalidateTag(cacheTag, "max");
