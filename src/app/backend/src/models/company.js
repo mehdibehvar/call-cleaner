@@ -7,7 +7,7 @@ const galleryItemSchema = new Schema({
     required: true,
     validate: {
       validator: function (v) {
-        return /^https?:\/\/.*\.(jpg|jpeg|png|gif)$/.test(v);
+        return /^https?:\/\/[^\s]+$/.test(v);
       },
       message: "Invalid gallery image URL",
     },
@@ -38,7 +38,7 @@ const companySchema = new Schema({
     required: true,
     validate: {
       validator: function (v) {
-        return /^https?:\/\/.*\.(jpg|jpeg|png|gif)$/.test(v);
+        return /^https?:\/\/[^\s]+$/.test(v);
       },
       message: "Invalid thumbnail URL",
     },
@@ -48,7 +48,7 @@ const companySchema = new Schema({
     required: true,
     validate: {
       validator: function (v) {
-        return /^https?:\/\/.*\.(jpg|jpeg|png|gif)$/.test(v);
+        return /^https?:\/\/[^\s]+$/.test(v);
       },
       message: "Invalid logo URL",
     },
@@ -81,7 +81,7 @@ const Company = mongoose.models?.company || model("company", companySchema);
 const galleryItemValidation = Joi.object({
   url: Joi.string()
     .uri()
-    .regex(/^https?:\/\/.*\.(jpg|jpeg|png|gif)$/)
+    .regex(/^https?:\/\/[^\s]+$/)
     .required(),
   caption: Joi.string().max(200).allow(""),
   order: Joi.number().integer().min(0).default(0),
@@ -94,11 +94,11 @@ const companySchemaValidation = {
     longDescription: Joi.string().max(1000).required(),
     thumbnail: Joi.string()
       .uri()
-      .regex(/^https?:\/\/.*\.(jpg|jpeg|png|gif)$/)
+      .regex(/^https?:\/\/[^\s]+$/)
       .required(),
     logo: Joi.string()
       .uri()
-      .regex(/^https?:\/\/.*\.(jpg|jpeg|png|gif)$/)
+      .regex(/^https?:\/\/[^\s]+$/)
       .required(),
     address: Joi.string().max(300).required(),
     phone: Joi.string(),
