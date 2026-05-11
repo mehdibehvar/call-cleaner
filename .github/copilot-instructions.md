@@ -117,7 +117,8 @@ This is a full-stack Next.js application with:
 - Never expose sensitive data to the client
 
 ## Common Patterns
-
+- Let's use the heroicons library for icons
+- Follows Radix UI's refined design patterns for components
 ### State Management
 ```typescript
 // Use Zustand for global state
