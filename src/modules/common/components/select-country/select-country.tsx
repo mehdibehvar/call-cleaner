@@ -4,15 +4,17 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Button from "../button/button";
 import { CheckIcon, ChevronDownIcon } from "@heroicons/react/24/solid";
+import { getCountryFlag } from "@/utils/flags";
+
 const COUNTRIES = [
-  { code: "us", name: "United States", flag: "🇺🇸" },
-  { code: "uk", name: "United Kingdom", flag: "🇬🇧" },
-  { code: "ca", name: "Canada", flag: "🇨🇦" },
-  { code: "au", name: "Australia", flag: "🇦🇺" },
-  { code: "de", name: "Germany", flag: "🇩🇪" },
-  { code: "fr", name: "France", flag: "🇫🇷" },
-  { code: "jp", name: "Japan", flag: "🇯🇵" },
-  { code: "in", name: "India", flag: "🇮🇳" },
+  { code: "us", name: "United States" },
+  { code: "gb", name: "United Kingdom" },
+  { code: "ca", name: "Canada" },
+  { code: "au", name: "Australia" },
+  { code: "de", name: "Germany" },
+  { code: "fr", name: "France" },
+  { code: "jp", name: "Japan" },
+  { code: "in", name: "India" },
 ];
 
 function SelectCountryCode() {
@@ -21,9 +23,9 @@ function SelectCountryCode() {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
-  const currentCountry = COUNTRIES.find(
-    (c) => c.code.toLowerCase() === countryCode.toLowerCase()
-  ) || COUNTRIES[0];
+  const currentCountry =
+    COUNTRIES.find((c) => c.code.toLowerCase() === countryCode.toLowerCase()) ||
+    COUNTRIES[0];
 
   const handleSelect = (code: string) => {
     setCountryCode(code);
@@ -33,11 +35,8 @@ function SelectCountryCode() {
   return (
     <div className="relative w-full max-w-xs">
       {/* Trigger Button */}
-      <Button
-        onClick={() => setIsOpen(!isOpen)}
-        variant="soft"
-      >
-          <span className="text-2xl">{currentCountry.flag}</span>
+      <Button onClick={() => setIsOpen(!isOpen)} variant="soft">
+        <span className="text-lg">{getCountryFlag(currentCountry.code)}</span>
         <ChevronDownIcon className="size-5" />
       </Button>
 
@@ -60,13 +59,10 @@ function SelectCountryCode() {
                     : ""
                 }`}
               >
-                <span className="text-2xl">{country.flag}</span>
-                <div className="flex-1 text-left">
-                  <div className="font-medium">{country.name}</div>
-
-                </div>
+                <span className="text-lg">{getCountryFlag(country.code)}</span>
+                <span className="text-sm">{country.name}</span>
                 {country.code.toLowerCase() === countryCode.toLowerCase() && (
-                 <CheckIcon className="size-5"></CheckIcon>
+                  <CheckIcon className="size-5"></CheckIcon>
                 )}
               </Button>
             ))}
@@ -76,10 +72,7 @@ function SelectCountryCode() {
 
       {/* Backdrop */}
       {isOpen && (
-        <div
-          className="fixed inset-0 z-40"
-          onClick={() => setIsOpen(false)}
-        />
+        <div className="fixed inset-0 z-40" onClick={() => setIsOpen(false)} />
       )}
     </div>
   );

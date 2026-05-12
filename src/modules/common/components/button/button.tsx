@@ -2,7 +2,7 @@ import { cn } from "@/utils/helpers";
 import { cva, type VariantProps } from "class-variance-authority";
 
 const buttonVariants = cva(
-  "text-sm font-medium text-primary-foreground cursor-pointer border border-transparent hover:bg-primary-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 shadow-xs focus:outline-none px-3 flex items-center gap-2 justify-center leading-5 rounded-sm transition-colors duration-200",
+  "text-sm font-medium text-primary-foreground cursor-pointer border border-transparent hover:bg-primary-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 shadow-xs focus:outline-none px-3 flex items-center gap-2 justify-center  rounded-sm transition-colors duration-200",
   {
     variants: {
       size: {

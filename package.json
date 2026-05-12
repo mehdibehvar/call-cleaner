@@ -10,7 +10,9 @@
     "lint": "eslint",
     "test": "jest --watchAll",
     "start-server": "nodemon ./src/app/backend/server.js",
-    "dev:full": "pnpm start-server & pnpm dev"
+    "dev:full": "pnpm start-server & pnpm dev",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
@@ -22,6 +24,7 @@
     "clsx": "^2.1.1",
     "config": "^4.1.1",
     "cors": "^2.8.5",
+    "country-flag-icons": "^1.6.17",
     "debug": "^4.4.3",
     "dotenv": "^17.2.3",
     "embla-carousel-autoplay": "^8.6.0",
@@ -46,6 +49,11 @@
   "devDependencies": {
     "@babel/core": "^7.28.5",
     "@babel/preset-env": "^7.28.5",
+    "@chromatic-com/storybook": "^5.1.2",
+    "@storybook/addon-a11y": "^10.3.6",
+    "@storybook/addon-docs": "^10.3.6",
+    "@storybook/addon-vitest": "^10.3.6",
+    "@storybook/nextjs-vite": "^10.3.6",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -55,9 +63,11 @@
     "babel-jest": "^30.2.0",
     "eslint": "^9",
     "eslint-config-next": "16.0.10",
+    "eslint-plugin-storybook": "^10.3.6",
     "jest": "^30.2.0",
     "playwright": "^1.57.0",
     "sass": "^1.99.0",
+    "storybook": "^10.3.6",
     "tailwindcss": "^4",
     "typescript": "^5",
     "vite": "^7.3.0",

@@ -4,9 +4,7 @@ import SelectService from "modules/landing/components/select-service";
 const page = () => {
   return (
     <div className="container min-h-screen">
-
-          <SelectCountryCode />
-
+      <SelectCountryCode />
       <SelectService />
     </div>
   );
