@@ -10,7 +10,7 @@
     "lint": "eslint",
     "test": "jest --watchAll",
     "start-server": "nodemon ./src/app/backend/server.js",
-    "dev:full": "pnpm start-server & pnpm dev",
+    "dev:full": "concurrently -k -n server,next \"pnpm start-server\" \"pnpm dev\"",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -61,6 +61,7 @@
     "@vitest/browser-playwright": "^4.0.16",
     "@vitest/coverage-v8": "^4.0.16",
     "babel-jest": "^30.2.0",
+    "concurrently": "^9.2.1",
     "eslint": "^9",
     "eslint-config-next": "16.0.10",
     "eslint-plugin-storybook": "^10.3.6",
