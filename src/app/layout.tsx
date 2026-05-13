@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Geist, Geist_Mono } from "next/font/google";
-import "@/styles/globals.scss";
+import "@/styles/globals.css";
 import "../modules/common/icons/icomoon/style.css";
 import { getBaseUrl } from "@/utils/env";
 import { cn } from "@/_lib/utils/helpers";
@@ -41,10 +41,7 @@ export default function RootLayout({
           "antialiased",
         )}
       >
-        <div className="container py-6 md:py-8 px-4 md:px-6 lg:px-8 min-h-screen bg-[url(/images/wallpaper/bg.png)] bg-cover bg-fixed bg-center">
-          {" "}
-          {children}
-        </div>
+        {children}
       </body>
     </html>
   );

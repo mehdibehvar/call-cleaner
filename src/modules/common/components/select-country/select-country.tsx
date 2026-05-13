@@ -33,7 +33,7 @@ function SelectCountryCode() {
   };
 
   return (
-    <div className="relative w-full max-w-xs">
+    <div className="relative w-full max-w-xs m-4">
       {/* Trigger Button */}
       <Button onClick={() => setIsOpen(!isOpen)} variant="soft">
         <span className="text-lg">{getCountryFlag(currentCountry.code)}</span>

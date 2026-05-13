@@ -7,7 +7,7 @@ const SelectService = () => {
   const countryCode = useGlobalStore((s) => s.countryCode);
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-primary text-2xl">
+      <h1 className="text-primary text-2xl font-bold">
         Wellcome to Call Cleaner
       </h1>
       <div className=" flex flex-col space-y-4 mt-6">
