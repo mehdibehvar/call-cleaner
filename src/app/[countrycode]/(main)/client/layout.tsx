@@ -1,5 +1,5 @@
-import Navbar from "@/components/navbar/navbar";
-import Header from "../../../../modules/client/components/header";
+import Navbar from "@/modules/common/components/mobile-navbar/mobile-navbar";
+import Header from "../../../../modules/client/components/Navbar";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (

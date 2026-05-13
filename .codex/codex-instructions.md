@@ -7,7 +7,8 @@ This is a full-stack Next.js application with:
 - **Styling**: Tailwind CSS with SCSS support
 - **State Management**: Zustand
 - **Package Manager**: pnpm
-
+## users journy
+in this app first user comes to landing page then it decide to register or not if he want to register there are two options for it one are you a client? or are you a company? then if he click on one of them it will be navigated to register form.after registering it will be navigated to login to login then if it be a client after login will be navigated to  client/home page and if be a company navigate to company/home.
 ## Code Style & Conventions
 
 ### TypeScript

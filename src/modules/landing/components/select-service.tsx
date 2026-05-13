@@ -11,12 +11,12 @@ const SelectService = () => {
         Wellcome to Call Cleaner
       </h1>
       <div className=" flex flex-col space-y-4 mt-6">
-        <Link className="w-full " href={`/${countryCode}/client/home`}>
+        <Link className="w-full " href={`/${countryCode}/account?type=client`}>
           <Button className="w-full" variant={"soft"}>
             are a client?
           </Button>
         </Link>
-        <Link className="w-full " href={`/${countryCode}/company`}>
+        <Link className="w-full " href={`/${countryCode}/account?type=company`}>
           <Button className="w-full" variant={"soft"}>
             are a company?
           </Button>

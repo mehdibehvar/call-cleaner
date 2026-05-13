@@ -1,8 +1,7 @@
-import Link from "next/link";
 import { BellAlertIcon, BookmarkIcon, HomeIcon, UserIcon } from "@heroicons/react/24/outline";
 import LocalizedClientLink from "../localized-client-link";
 
-const Navbar = () => {
+const MobileNavbar = () => {
   return (
     <nav
       className="
@@ -53,4 +52,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default MobileNavbar;

@@ -12,10 +12,12 @@ const LocalizedClientLink = ({
   href: string;
   children: React.ReactNode;
   className?:string
-}) => {
+} & Omit<React.ComponentProps<typeof Link>, "href">) => {
   const {countrycode} = useParams();
+  const cleanCountryCode = String(countrycode ?? "").replace(/^\/+|\/+$/g, "");
+  const cleanHref = href.replace(/^\/+/, "");
 
-  return <Link className={cn("text-primary-400",className)} href={`/${countrycode}/${href}`} {...props}>{children}</Link>;
+  return <Link className={cn("text-primary-400",className)} href={`/${cleanCountryCode}/${cleanHref}`} {...props}>{children}</Link>;
 };
 
 export default LocalizedClientLink;

@@ -1,10 +1,11 @@
 "use server";
 
-import { setAuthToken } from "@/lib/_data/cookies";
+import { clearAuthToken, setAuthToken } from "@/lib/_data/cookies";
 import { authRoutes } from "@/lib/api-routes/routes";
 import { UserHttp } from "@/types/http-types";
 import { pickFormData } from "@/utils/helpers";
 import { post } from "@/utils/http-client";
+import { redirect } from "next/navigation";
 
 type SubmittedValue = string | number | readonly string[] | FormDataEntryValue[] | undefined;
 
@@ -78,4 +79,14 @@ export const signInUser = async (
     await setAuthToken(res.data.token);
   }
   return res;
+};
+
+export const signOutUser = async (formData: FormData) => {
+  const countryCode = String(formData.get("countrycode") || "").replace(
+    /^\/+|\/+$/g,
+    "",
+  );
+
+  await clearAuthToken();
+  redirect(countryCode ? `/${countryCode}/account` : "/account");
 };

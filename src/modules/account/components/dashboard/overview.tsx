@@ -126,7 +126,6 @@ const Overview = ({ user }: OverviewProps) => {
           ))}
         </div>
       </div>
-
       <div className="grid gap-4 lg:grid-cols-[1fr_0.75fr]">
         <div className="grid gap-4 sm:grid-cols-2">
           {content.actions.map((action) => (

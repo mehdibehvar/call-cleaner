@@ -1,7 +1,6 @@
 import LocalizedClientLink from '@/components/localized-client-link'
-import Link from 'next/link'
 
-const page = () => {
+const Home = () => {
   return (
     <div>
         <h1>this is company home page</h1>
@@ -10,4 +9,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Home

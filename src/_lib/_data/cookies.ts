@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 /// this function is for getting header authorization key
 export const getAuthHeaders = async (): Promise<
-  { authorization: string } | {}
+  { authorization: string; "x-auth-token": string } | Record<string, never>
 > => {
   try {
     const cookieStore = await cookies();
@@ -11,7 +11,7 @@ export const getAuthHeaders = async (): Promise<
       authorization: `Bearer ${token}`,
       "x-auth-token": token,
     };
-  } catch (err) {
+  } catch {
     return {};
   }
 };
@@ -24,13 +24,13 @@ export const getCacheTag = async (tag: string): Promise<string> => {
       return "";
     }
     return `${tag}-${cacheId}`;
-  } catch (error) {
+  } catch {
     return "";
   }
 };
 export const getCacheOptions = async (
   tag: string,
-): Promise<{ tags: string[] } | {}> => {
+): Promise<{ tags: string[] } | Record<string, never>> => {
   if (typeof window !== "undefined") {
     return {};
   }
@@ -55,4 +55,10 @@ export const setAuthToken = async (token: string) => {
     sameSite: "strict",
     secure: process.env.NODE_ENV === "production",
   });
+};
+
+export const clearAuthToken = async () => {
+  const cookieStore = await cookies();
+  cookieStore.delete("call-cleaner-jwt");
+  cookieStore.delete("call-cleaner-id");
 };

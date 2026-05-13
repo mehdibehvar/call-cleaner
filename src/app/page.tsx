@@ -2,7 +2,7 @@ import SelectCountryCode from "@/components/select-country/select-country";
 import { Waves } from "@/modules/common/components/ui/wave-background";
 import SelectService from "modules/landing/components/select-service";
 
-const page = () => {
+const Landing = () => {
   return (
     <div className="relative min-h-screen overflow-hidden bg-black">
       <div className="pointer-events-none absolute inset-0 z-0">
@@ -21,4 +21,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Landing;
