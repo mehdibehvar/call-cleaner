@@ -6,11 +6,13 @@ import { UserHttp } from "@/types/http-types";
 import { pickFormData } from "@/utils/helpers";
 import { post } from "@/utils/http-client";
 
+type SubmittedValue = string | number | readonly string[] | FormDataEntryValue[] | undefined;
+
 // Define a type for the return value to make it clearer
-interface ActionResponse {
+export interface ActionResponse {
   ok: boolean;
-  defaultValues?: Record<string, any>;
-  data?: any;
+  defaultValues?: Record<string, SubmittedValue>;
+  data?: unknown;
   errors?: Record<string, string>; // Field-specific errors
   error?: string; // General error message
 }
@@ -26,6 +28,7 @@ export const signUpUser = async (
     "mobile",
   ]);
   const roles = formData.getAll("roles");
+  const defaultValues = { ...submittedValues, roles };
 
   try {
     const res = await post(authRoutes.signup, { ...submittedValues, roles });
@@ -45,7 +48,7 @@ export const signUpUser = async (
       // On API-level validation errors, return ok: false with errors and submitted values
       return {
         ok: false,
-        defaultValues: submittedValues, // Crucial: return submitted values
+        defaultValues,
         errors: res.errors, // Assuming API returns errors in this format
         error: res.error, // General error if any
       };
@@ -55,7 +58,7 @@ export const signUpUser = async (
     console.error("Signup API call failed:", error);
     return {
       ok: false,
-      defaultValues: submittedValues, // Still return submitted values
+      defaultValues,
       errors: undefined,
       error: "An unexpected error occurred during signup. Please try again.", // Generic error message
     };
