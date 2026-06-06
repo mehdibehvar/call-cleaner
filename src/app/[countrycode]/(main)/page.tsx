@@ -5,6 +5,7 @@ import Products from "modules/company/components/compenies";
 import Spinner from "@/components/spinner";
 import Description from "@/components/description/Description";
 const discs = [
+  `It might be better to use ssg for the home page and category pages, because they are not changing that much and they are not personalized for each user. but for product pages it might be better to use isr because they are changing more often and they are personalized for each user.`,
   ` we use fetch here for getting list from server by making a request to
           this api:"/api/v1/company".In the App Router system the fetch API
           force cache the data by default that is something like static behavior
@@ -20,22 +21,21 @@ const discs = [
   `  //const allCompenies=use(fetchComps)// this is not good approach because it will re-render the page on
   // after use notice that the promise is not resolved
   // so it suspends the page and waits for the promise to resolve`,
+  `Homepage            → SSG
+Category Pages      → ISR
+Product Pages       → ISR
+Search Results      → SSR
+Cart                → CSR
+Checkout            → CSR
+Dashboard            → CSR`
 ];
 export default async function Home({
   params,
 }: {
   params: Promise<{ countrycode: string }>;
 }) {
-  /*
- رندر کامپوننت تا خط await متوقف میشه
-سرور صبر می‌کنه دیتا آماده بشه
-ادامه‌ی رندر از همون نقطه انجام میشه
-کل HTML یک‌بار ساخته میشه و تمیز میاد سمت کلاینت
-*/
+
   const result = await fetchCompanies();
-  //const allCompenies=use(fetchCompanies)// this is not good approach because it will re-render the page on
-  // after use notice that the promise is not resolved
-  // so it suspends the page and waits for the promise to resolve
   const slug = await params;
   if (!result.ok) {
     return (
@@ -67,10 +67,13 @@ export default async function Home({
           </ul>
         </nav>
       </header>
+      <div className="mb-4">
+          ///TO DO :show a list of hight rated companies in the home page and make
+          /// it dynamic by getting the data from the database 
+          ///and show them in a swiper and make it responsive and add some styles to it
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Suspense fallback={<Spinner />}>
-          <Products allCompenies={result.data} countrycode={slug.countrycode} />
-        </Suspense>
+        <Products allCompenies={result.data} countrycode={slug.countrycode} />
       </div>
       <Description discs={discs} />
     </main>

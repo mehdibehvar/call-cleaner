@@ -1,4 +1,5 @@
 "use client";
+import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import Login from "../components/login";
 import Register from "../components/register";
@@ -8,9 +9,17 @@ export enum LOGIN_VIEW {
   REGISTER = "register",
 }
 
+export type AccountRole = "client" | "company";
+
 const LoginTemplate = () => {
+  const searchParams = useSearchParams();
+  const accountType = searchParams.get("type");
+  const selectedRole: AccountRole | undefined =
+    accountType === "client" || accountType === "company"
+      ? accountType
+      : undefined;
   const [currentView, setCurrentView] = useState<LOGIN_VIEW>(
-    LOGIN_VIEW.SIGN_IN,
+    selectedRole ? LOGIN_VIEW.REGISTER : LOGIN_VIEW.SIGN_IN,
   );
   const isRegister = currentView === LOGIN_VIEW.REGISTER;
 
@@ -59,7 +68,10 @@ const LoginTemplate = () => {
           {currentView === LOGIN_VIEW.SIGN_IN ? (
             <Login setCurrentView={setCurrentView} />
           ) : (
-            <Register setCurrentView={setCurrentView} />
+            <Register
+              selectedRole={selectedRole}
+              setCurrentView={setCurrentView}
+            />
           )}
         </div>
       </div>

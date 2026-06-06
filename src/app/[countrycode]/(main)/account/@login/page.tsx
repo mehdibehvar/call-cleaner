@@ -1,5 +1,6 @@
 import LoginTemplate from "modules/account/templates/Login-template";
 import { Metadata } from "next";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Sign in",
@@ -8,8 +9,8 @@ export const metadata: Metadata = {
 
 export default function Login() {
   return (
-    <>
+    <Suspense fallback={<span>Loading..........</span>}>
       <LoginTemplate />
-    </>
+    </Suspense>
   );
 }

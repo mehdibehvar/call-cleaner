@@ -1,53 +1,68 @@
-import { BellAlertIcon, BookmarkIcon, HomeIcon, UserIcon } from "@heroicons/react/24/outline";
+"use client";
+
+import {
+  BellAlertIcon,
+  BookmarkIcon,
+  HomeIcon,
+  UserCircleIcon,
+} from "@heroicons/react/24/outline";
+import { usePathname } from "next/navigation";
+import { cn } from "@/utils/helpers";
 import LocalizedClientLink from "../localized-client-link";
 
+const navigationItems = [
+  {
+    label: "Home",
+    href: "/client/home",
+    Icon: HomeIcon,
+  },
+  {
+    label: "Bookings",
+    href: "/client/booking",
+    Icon: BookmarkIcon,
+  },
+  {
+    label: "Alerts",
+    href: "/client/notifications",
+    Icon: BellAlertIcon,
+  },
+  {
+    label: "Profile",
+    href: "/account/profile",
+    Icon: UserCircleIcon,
+  },
+];
+
 const MobileNavbar = () => {
+  const pathname = usePathname();
+
   return (
     <nav
-      className="
-        sticky
-        bottom-2
-        w-full
-        p-2
-        bg-white
-        rounded-full
-        flex
-        justify-between
-        items-center
-        sm:hidden
-        *:bg-secondary-200
-        *:rounded-full
-        *:size-12
-        **:text-primary
-      "
+      aria-label="Mobile navigation"
+      className="fixed inset-x-3 bottom-3 z-50 block rounded-lg border border-gray-200 bg-white/95 px-2 py-2 shadow-lg shadow-gray-200/80 backdrop-blur sm:hidden"
     >
-      <LocalizedClientLink
-        href="/account/profile"
-        className="flex items-center justify-center "
-      >
-        <UserIcon className="size-8"  />
-      </LocalizedClientLink>
+      <ul className="grid grid-cols-4 gap-1">
+        {navigationItems.map(({ label, href, Icon }) => {
+          const isActive = pathname.endsWith(href.replace(/^\/+/, ""));
 
-      <LocalizedClientLink
-        href="/client/booking"
-        className="flex items-center justify-center"
-      >
-        <BookmarkIcon className="size-8" />
-      </LocalizedClientLink>
-
-      <LocalizedClientLink
-        href="/client/notifications"
-        className="flex items-center justify-center"
-      >
-       <BellAlertIcon className="size-8" />
-      </LocalizedClientLink>
-      <LocalizedClientLink
-        href="/client/home"
-        className="flex items-center justify-center"
-      >
-        <HomeIcon className="size-8" />
-      </LocalizedClientLink>
-      
+          return (
+            <li key={href}>
+              <LocalizedClientLink
+                href={href}
+                aria-current={isActive ? "page" : undefined}
+                className={cn(
+                  "flex h-14 flex-col items-center justify-center gap-1 rounded-md text-xs font-semibold text-gray-500 transition",
+                  "hover:bg-primary-50 hover:text-primary focus-visible:bg-primary-50 focus-visible:text-primary focus-visible:ring-2 focus-visible:ring-primary-200",
+                  isActive && "bg-primary text-white shadow-sm shadow-primary-200 hover:bg-primary hover:text-white",
+                )}
+              >
+                <Icon className="size-5" aria-hidden="true" />
+                <span className="leading-none">{label}</span>
+              </LocalizedClientLink>
+            </li>
+          );
+        })}
+      </ul>
     </nav>
   );
 };

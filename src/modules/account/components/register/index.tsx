@@ -7,10 +7,15 @@ import {
   signUpUser,
 } from "@/lib/_services/account-services/login-actions";
 import { getFieldError, getInputValue } from "@/utils/helpers";
-import { LOGIN_VIEW } from "modules/account/templates/Login-template";
+import {
+  type AccountRole,
+  LOGIN_VIEW,
+} from "modules/account/templates/Login-template";
+import { useParams, useRouter } from "next/navigation";
 import { useActionState, useEffect } from "react";
 
 interface IProps {
+  selectedRole?: AccountRole;
   setCurrentView: (view: LOGIN_VIEW) => void;
 }
 
@@ -33,15 +38,16 @@ const roles = [
     value: "company",
     description: "Receive and manage service requests.",
   },
-  {
-    label: "Admin",
-    value: "admin",
-    description: "Manage users and platform settings.",
-  },
 ];
 
-const Register = ({ setCurrentView }: IProps) => {
+const Register = ({ selectedRole, setCurrentView }: IProps) => {
   const [state, action, pending] = useActionState(signUpUser, initialState);
+  const router = useRouter();
+  const params = useParams();
+  const countryCode = String(params.countrycode ?? "").replace(/^\/+|\/+$/g, "");
+  const visibleRoles = selectedRole
+    ? roles.filter((role) => role.value === selectedRole)
+    : roles;
 
   useEffect(() => {
     if (state.ok) {
@@ -52,8 +58,9 @@ const Register = ({ setCurrentView }: IProps) => {
 
       alert(message);
       setCurrentView(LOGIN_VIEW.SIGN_IN);
+      router.replace(`/${countryCode}/account`);
     }
-  }, [state.ok, state.data, setCurrentView]);
+  }, [countryCode, router, state.ok, state.data, setCurrentView]);
 
   return (
     <div className="space-y-6">
@@ -99,20 +106,22 @@ const Register = ({ setCurrentView }: IProps) => {
           <legend className="text-sm font-medium text-gray-700">
             Account type
           </legend>
-          <div className="grid gap-2 sm:grid-cols-3">
-            {roles.map((role) => (
+          <div className="grid gap-2 sm:grid-cols-2">
+            {visibleRoles.map((role) => (
               <label
                 key={role.value}
                 className="flex min-h-24 cursor-pointer flex-col rounded-md border border-gray-200 bg-gray-50 p-3 text-sm transition hover:border-primary-300 hover:bg-primary-50"
               >
                 <span className="flex items-center gap-2 font-medium text-gray-900">
                   <input
-                    type="checkbox"
+                    type="radio"
                     name="roles"
                     value={role.value}
-                    defaultChecked={state?.defaultValues?.roles?.includes(
-                      role.value,
-                    )}
+                    defaultChecked={
+                      selectedRole === role.value ||
+                      (Array.isArray(state?.defaultValues?.roles) &&
+                        state.defaultValues.roles.includes(role.value))
+                    }
                     className="size-4 accent-primary"
                   />
                   {role.label}

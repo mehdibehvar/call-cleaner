@@ -1,3 +1,4 @@
+"use client";
 import { signOutUser } from "@/lib/_services/account-services/login-actions";
 import {
   ArrowRightOnRectangleIcon,
@@ -9,6 +10,7 @@ import {
   UserCircleIcon,
 } from "@heroicons/react/24/outline";
 import LocalizedClientLink from "@/modules/common/components/localized-client-link";
+import useGlobalStore from "@/_lib/stores/global-store";
 
 const navigationItems = [
   {
@@ -33,9 +35,11 @@ const navigationItems = [
   },
 ];
 
-const Navbar = ({ countryCode }: { countryCode?: string }) => {
+const Navbar = () => {
+    const countryCode = useGlobalStore((state) => state.countryCode);
+
   return (
-    <header className="sticky top-4 z-40 mx-auto hidden w-[min(calc(100%-2rem),72rem)] sm:block">
+    <div className="sticky top-4 z-40 mx-auto hidden w-[min(calc(100%-2rem),72rem)] sm:block">
       <nav className="flex h-18 items-center justify-between rounded-lg border border-gray-200/80 bg-white/95 px-4 shadow-sm shadow-gray-200/70 backdrop-blur md:px-5">
         <LocalizedClientLink
           href="/client/home"
@@ -101,7 +105,7 @@ const Navbar = ({ countryCode }: { countryCode?: string }) => {
           </div>
         </details>
       </nav>
-    </header>
+    </div>
   );
 };
 

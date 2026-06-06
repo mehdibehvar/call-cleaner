@@ -14,7 +14,7 @@ const COUNTRIES = [
   { code: "de", name: "Germany" },
   { code: "fr", name: "France" },
   { code: "jp", name: "Japan" },
-  { code: "in", name: "India" },
+  { code: "tr", name: "Turkey" },
 ];
 
 function SelectCountryCode() {

@@ -4,7 +4,8 @@ import ErrorMessageDisply from "@/components/error-display";
 import Input from "@/components/input/input";
 import { signInUser } from "@/lib/_services/account-services/login-actions";
 import { LOGIN_VIEW } from "modules/account/templates/Login-template";
-import { useActionState, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { useActionState, useEffect, useState } from "react";
 
 interface IProps {
   setCurrentView: (view: LOGIN_VIEW) => void;
@@ -19,6 +20,22 @@ const initialState = {
 const Login = ({ setCurrentView }: IProps) => {
   const [state, action, pending] = useActionState(signInUser, initialState);
   const [mobile, setMobile] = useState("");
+  const router = useRouter();
+  const params = useParams();
+  const countryCode = String(params.countrycode ?? "").replace(
+    /^\/+|\/+$/g,
+    "",
+  );
+
+  useEffect(() => {
+    if (!state.ok) return;
+    const roles = state.data.info.roles;
+    const nextPath = roles.includes("company")
+      ? `/${countryCode}/company/home`
+      : `/${countryCode}/client/home`;
+
+    router.replace(nextPath);
+  }, [countryCode, router, state]);
 
   return (
     <div className="space-y-6">
