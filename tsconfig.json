@@ -28,7 +28,9 @@
       "@/types/*": ["types/*"],
       "@/backend/*": ["app/backend/*"],
       "@/styles/*": ["styles/*"],
-      "@/modules/*": ["modules/*"]
+      "@/modules/*": ["modules/*"],
+      "@/hooks/*": ["_lib/hooks/*"],
+      "@/stores/*": ["stores/*"]
     }
   },
   "include": [
