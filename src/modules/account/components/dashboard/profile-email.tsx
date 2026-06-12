@@ -3,13 +3,12 @@ import FormCard from "@/components/card/form-card";
 import Input from "@/components/input/input";
 import { updateEmail } from "@/lib/_services/account-services/profiel-actions";
 import { getFieldError } from "@/utils/helpers";
+import type { ApiResult } from "@/utils/http-client";
 import { useActionState, useEffect } from "react";
-const initialState = {
+const initialState: ApiResult<any> = {
   ok: false,
-  defaultValue: null,
-  data: null,
-  error: undefined,
   errors: undefined,
+  error: "",
 };
 const ProfielEmail = ({ user }: { user: any }) => {
   const [state, action, pending] = useActionState(updateEmail, initialState);

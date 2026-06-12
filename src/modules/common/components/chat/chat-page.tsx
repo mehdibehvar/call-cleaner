@@ -4,9 +4,10 @@ import { useEffect, useRef } from "react";
 import { useChat } from "@/hooks/use-chat";
 import { MessageBubble } from "./message-bubble";
 import { ChatInput } from "./chat-input";
+import { StarIcon } from "@heroicons/react/24/solid";
 
 export default function ChatPage() {
-  const { messages, isStreaming, error, sendMessage, stopStreaming, clearHistory } =
+  const { messages, isStreaming, error, sendMessage, stopStreaming, clearHistory, sendHardcoded } =
     useChat();
   const bottomRef = useRef<HTMLDivElement>(null);
 
@@ -24,15 +25,10 @@ export default function ChatPage() {
       <header className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
         <div className="flex items-center gap-2.5">
           <div className="w-7 h-7 rounded-full bg-gray-900 flex items-center justify-center">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path
-                d="M7 1L9 5.5H13.5L9.75 8.5L11.25 13L7 10L2.75 13L4.25 8.5L0.5 5.5H5L7 1Z"
-                fill="white"
-              />
-            </svg>
+             <StarIcon className="w-4 h-4 text-white" />
           </div>
           <span className="text-sm font-semibold text-gray-900 tracking-tight">
-            Claude
+         AI Chat
           </span>
         </div>
         {messages.length > 0 && (
@@ -49,7 +45,7 @@ export default function ChatPage() {
       <main className="flex-1 overflow-y-auto px-4 py-6">
         <div className="max-w-2xl mx-auto space-y-6">
           {messages.length === 0 ? (
-            <EmptyState onSend={sendMessage} />
+            <EmptyState onSend={sendMessage} onSuggest={sendHardcoded} />
           ) : (
             messages.map((message) => (
               <MessageBubble
@@ -81,7 +77,7 @@ export default function ChatPage() {
             isStreaming={isStreaming}
           />
           <p className="text-center text-[11px] text-gray-400 mt-3">
-            Claude can make mistakes. Check important information.
+            AI can make mistakes. Check important information.
           </p>
         </div>
       </footer>
@@ -89,13 +85,29 @@ export default function ChatPage() {
   );
 }
 
-function EmptyState({ onSend }: { onSend: (msg: string) => void }) {
-  const suggestions = [
-    "Explain React Server Components",
-    "Write a TypeScript utility type",
-    "Debug my Next.js 404 error",
-    "Summarize the App Router changes",
-  ];
+function EmptyState({ onSend, onSuggest }: { onSend: (msg: string) => void; onSuggest: (question: string, answer: string) => void }) {
+const SUGGESTIONS: { question: string; answer: string }[] = [
+  {
+    question: "Explain about call cleaner app",
+    answer:
+      "Call Cleaner is a smart call management app designed to give you full control over your incoming calls. It automatically identifies and filters unwanted calls — including spam, telemarketers, and robocalls — so you only hear from people that matter. It's built for simplicity: no complex setup, just install and stay protected.",
+  },
+  {
+    question: "How does the call cleaner work?",
+    answer:
+      "Call Cleaner works by cross-referencing incoming calls against a continuously updated database of known spam numbers. When a suspicious call is detected, the app silently blocks or flags it before your phone even rings. You can also create your own allow/block lists for full customization. Everything happens on-device, so your call data stays private.",
+  },
+  {
+    question: "What are the benefits of using call cleaner?",
+    answer:
+      "The main benefits of Call Cleaner are:\n\n• 🚫 Block spam & robocalls automatically\n• 🔕 Stop unwanted interruptions during work or sleep\n• 🔒 Privacy-first — no call data sent to the cloud\n• ⚡ Real-time protection with zero performance impact\n• 🎛️ Custom rules for contacts, area codes, and number patterns\n• 📊 Call history log so you always know what was blocked and why",
+  },
+  {
+    question: "Can you give me a quick summary of the call cleaner app?",
+    answer:
+      "Sure! Call Cleaner is your all-in-one defense against unwanted calls. It silently blocks spam, telemarketers, and robocalls in real time — without you lifting a finger. It's lightweight, privacy-focused, and fully customizable. Think of it as a smart filter that sits between you and the noise.",
+  },
+];
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[50vh] gap-8">
@@ -107,13 +119,13 @@ function EmptyState({ onSend }: { onSend: (msg: string) => void }) {
       </div>
 
       <div className="grid grid-cols-2 gap-2 w-full max-w-md">
-        {suggestions.map((s) => (
+            {SUGGESTIONS.map(({ question, answer }) => (
           <button
-            key={s}
-            onClick={() => onSend(s)}
+            key={question}
+            onClick={() => onSuggest(question, answer)}
             className="text-left text-xs text-gray-600 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-xl px-3 py-2.5 transition-colors leading-relaxed"
           >
-            {s}
+            {question}
           </button>
         ))}
       </div>

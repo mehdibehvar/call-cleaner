@@ -9,11 +9,10 @@ const countryToLocale: Record<string, string> = {
 };
 
 export function proxy(req: NextRequest) {
-  const country = req.geo?.country || "US";
-  const locale = countryToLocale[country];
+  const country = req.headers.get("x-vercel-ip-country") || "US";
+  const locale = countryToLocale[country] || countryToLocale.US;
 
   const url = req.nextUrl.clone();
-  console.log("reqqqqqqqq:", req);
 
   // Skip if locale already exists
   const hasLocale =

@@ -41,7 +41,7 @@ export function ChatInput({ onSend, onStop, isStreaming, disabled }: Props) {
         value={value}
         onChange={(e) => setValue(e.target.value)}
         onKeyDown={handleKeyDown}
-        placeholder="Message Claude…"
+        placeholder="Message AI..."
         rows={1}
         disabled={disabled}
         className="flex-1 resize-none text-sm text-gray-800 placeholder-gray-400 bg-transparent outline-none leading-relaxed max-h-40 disabled:opacity-50"

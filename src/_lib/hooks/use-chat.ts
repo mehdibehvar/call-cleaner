@@ -1,4 +1,6 @@
-import { useState, useRef, useCallback } from "react";
+"use client";
+
+import { useCallback, useRef, useState } from "react";
 
 export type Message = {
   id: string;
@@ -10,88 +12,109 @@ export function useChat() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isStreaming, setIsStreaming] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const abortControllerRef = useRef<AbortController | null>(null);
 
-  const sendMessage = useCallback(
-    async (userInput: string) => {
-      if (!userInput.trim() || isStreaming) return;
+  const abortRef = useRef<AbortController | null>(null);
 
-      setError(null);
+  const sendMessage = useCallback(async (input: string) => {
+    if (!input.trim() || isStreaming) return;
 
-      const userMessage: Message = {
-        id: crypto.randomUUID(),
-        role: "user",
-        content: userInput.trim(),
-      };
+    setError(null);
 
-      const assistantMessage: Message = {
-        id: crypto.randomUUID(),
-        role: "assistant",
-        content: "",
-      };
+    const userMessage: Message = {
+      id: crypto.randomUUID(),
+      role: "user",
+      content: input,
+    };
 
-      const updatedMessages = [...messages, userMessage];
-      setMessages([...updatedMessages, assistantMessage]);
-      setIsStreaming(true);
+    const assistantMessage: Message = {
+      id: crypto.randomUUID(),
+      role: "assistant",
+      content: "",
+    };
 
-      abortControllerRef.current = new AbortController();
+    const updated = [...messages, userMessage];
+    setMessages([...updated, assistantMessage]);
 
-      try {
-        const response = await fetch("/api/chat", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            messages: updatedMessages.map((m) => ({
-              role: m.role,
-              content: m.content,
-            })),
-          }),
-          signal: abortControllerRef.current.signal,
-        });
+    setIsStreaming(true);
+    abortRef.current = new AbortController();
 
-        if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
-        if (!response.body) throw new Error("No response body");
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        signal: abortRef.current.signal,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          provider: "openai", // change to "anthropic" or "openai" to switch providers
+          messages: updated.map(({ role, content }) => ({ role, content })),
+        }),
+      });
 
-        const reader = response.body.getReader();
-        const decoder = new TextDecoder();
-        let accumulatedContent = "";
-
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-
-          accumulatedContent += decoder.decode(value, { stream: true });
-
-          setMessages((prev) =>
-            prev.map((m) =>
-              m.id === assistantMessage.id
-                ? { ...m, content: accumulatedContent }
-                : m
-            )
-          );
-        }
-      } catch (err: unknown) {
-        if (err instanceof Error && err.name === "AbortError") return;
-        const message = err instanceof Error ? err.message : "Something went wrong";
-        setError(message);
-        // Remove the empty assistant message on error
-        setMessages((prev) => prev.filter((m) => m.id !== assistantMessage.id));
-      } finally {
-        setIsStreaming(false);
-        abortControllerRef.current = null;
+      if (!res.ok) {
+        throw new Error(await res.text());
       }
-    },
-    [messages, isStreaming]
-  );
 
-  const stopStreaming = useCallback(() => {
-    abortControllerRef.current?.abort();
-  }, []);
+      if (!res.body) {
+        throw new Error("No response body");
+      }
 
-  const clearHistory = useCallback(() => {
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+
+      let text = "";
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        text += decoder.decode(value, { stream: true });
+
+        setMessages((prev) =>
+          prev.map((m) =>
+            m.id === assistantMessage.id
+              ? { ...m, content: text }
+              : m
+          )
+        );
+      }
+    } catch (err: any) {
+      if (err.name !== "AbortError") {
+        setError(err.message);
+      }
+    } finally {
+      setIsStreaming(false);
+    }
+  }, [messages, isStreaming]);
+
+  const stopStreaming = () => {
+    abortRef.current?.abort();
+  };
+
+  const clearHistory = () => {
     setMessages([]);
     setError(null);
+  };
+  const sendHardcoded = useCallback((question: string, answer: string) => {
+    const userMessage: Message = {
+      id: crypto.randomUUID(),
+      role: "user",
+      content: question,
+    };
+    const assistantMessage: Message = {
+      id: crypto.randomUUID(),
+      role: "assistant",
+      content: answer,
+    };
+    // Inject both into history so follow-up API calls have full context
+    setMessages((prev) => [...prev, userMessage, assistantMessage]);
   }, []);
 
-  return { messages, isStreaming, error, sendMessage, stopStreaming, clearHistory };
+  return {
+    messages,
+    isStreaming,
+    error,
+    sendMessage,
+    stopStreaming,
+    clearHistory,
+    sendHardcoded,
+  };
 }
