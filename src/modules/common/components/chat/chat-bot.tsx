@@ -1,14 +1,19 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useChat } from "@/hooks/use-chat";
 import { MessageBubble } from "./message-bubble";
 import { ChatInput } from "./chat-input";
-import { StarIcon } from "@heroicons/react/24/solid";
+import {
+  ChatBubbleOvalLeftEllipsisIcon,
+  StarIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/solid";
 
-export default function ChatPage() {
+export default function ChatBot() {
   const { messages, isStreaming, error, sendMessage, stopStreaming, clearHistory, sendHardcoded } =
     useChat();
+  const [isOpen, setIsOpen] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
 
   // Auto-scroll to bottom on new content
@@ -19,8 +24,24 @@ export default function ChatPage() {
   const latestAssistantId =
     messages.findLast((m) => m.role === "assistant")?.id ?? null;
 
+  if (!isOpen) {
+    return (
+      <button
+        type="button"
+        onClick={() => setIsOpen(true)}
+        aria-label="Open AI chat"
+        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-gray-900 text-white shadow-xl shadow-gray-900/20 transition hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
+      >
+        <ChatBubbleOvalLeftEllipsisIcon className="h-7 w-7" />
+      </button>
+    );
+  }
+
   return (
-    <div className="flex flex-col h-screen bg-white">
+    <aside
+      aria-label="AI chat"
+      className="fixed bottom-4 left-4 right-4 top-16 z-50 flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl shadow-gray-900/20 md:left-auto md:top-auto md:h-[720px] md:max-h-[calc(100vh-3rem)] md:w-[420px]"
+    >
       {/* Header */}
       <header className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
         <div className="flex items-center gap-2.5">
@@ -31,14 +52,24 @@ export default function ChatPage() {
          AI Chat
           </span>
         </div>
-        {messages.length > 0 && (
+        <div className="flex items-center gap-3">
+          {messages.length > 0 && (
+            <button
+              onClick={clearHistory}
+              className="text-xs text-gray-400 transition-colors hover:text-gray-600"
+            >
+              Clear chat
+            </button>
+          )}
           <button
-            onClick={clearHistory}
-            className="text-xs text-gray-400 hover:text-gray-600 transition-colors"
+            type="button"
+            onClick={() => setIsOpen(false)}
+            aria-label="Close AI chat"
+            className="flex h-8 w-8 items-center justify-center rounded-full text-gray-400 transition hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
           >
-            Clear chat
+            <XMarkIcon className="h-5 w-5" />
           </button>
-        )}
+        </div>
       </header>
 
       {/* Messages */}
@@ -81,7 +112,7 @@ export default function ChatPage() {
           </p>
         </div>
       </footer>
-    </div>
+    </aside>
   );
 }
 
