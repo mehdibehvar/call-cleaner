@@ -31,7 +31,7 @@ export function MessageBubble({ message, isLatestAssistant }: Props) {
             <span className="w-1.5 h-1.5 rounded-full bg-gray-400 animate-bounce [animation-delay:300ms]" />
           </span>
         ) : (
-          <span className="whitespace-pre-wrap">{message.content}</span>
+          <span className="whitespace-pre-wrap break-all">{message.content}</span>
         )}
       </div>
     </div>

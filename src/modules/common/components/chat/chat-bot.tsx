@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useChat } from "@/hooks/use-chat";
 import { MessageBubble } from "./message-bubble";
 import { ChatInput } from "./chat-input";
+import Button from "../button/button";
 import {
   ChatBubbleOvalLeftEllipsisIcon,
   StarIcon,
@@ -26,14 +27,14 @@ export default function ChatBot() {
 
   if (!isOpen) {
     return (
-      <button
+      <Button
         type="button"
         onClick={() => setIsOpen(true)}
         aria-label="Open AI chat"
         className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-gray-900 text-white shadow-xl shadow-gray-900/20 transition hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
       >
         <ChatBubbleOvalLeftEllipsisIcon className="h-7 w-7" />
-      </button>
+      </Button>
     );
   }
 
@@ -54,21 +55,26 @@ export default function ChatBot() {
         </div>
         <div className="flex items-center gap-3">
           {messages.length > 0 && (
-            <button
+            <Button
+              type="button"
+              variant="ghost"
+              size="xs"
               onClick={clearHistory}
-              className="text-xs text-gray-400 transition-colors hover:text-gray-600"
+              className="h-auto px-0 text-xs text-gray-400 shadow-none transition-colors hover:bg-transparent hover:text-gray-600"
             >
               Clear chat
-            </button>
+            </Button>
           )}
-          <button
+          <Button
             type="button"
+            variant="ghost"
+            size="icon"
             onClick={() => setIsOpen(false)}
             aria-label="Close AI chat"
-            className="flex h-8 w-8 items-center justify-center rounded-full text-gray-400 transition hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
+            className="h-8 w-8 rounded-full p-0 text-gray-400 shadow-none transition hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
           >
             <XMarkIcon className="h-5 w-5" />
-          </button>
+          </Button>
         </div>
       </header>
 
@@ -76,7 +82,7 @@ export default function ChatBot() {
       <main className="flex-1 overflow-y-auto px-4 py-6">
         <div className="max-w-2xl mx-auto space-y-6">
           {messages.length === 0 ? (
-            <EmptyState onSend={sendMessage} onSuggest={sendHardcoded} />
+            <EmptyState onSuggest={sendHardcoded} />
           ) : (
             messages.map((message) => (
               <MessageBubble
@@ -116,7 +122,11 @@ export default function ChatBot() {
   );
 }
 
-function EmptyState({ onSend, onSuggest }: { onSend: (msg: string) => void; onSuggest: (question: string, answer: string) => void }) {
+interface EmptyStateProps {
+  onSuggest: (question: string, answer: string) => void;
+}
+
+function EmptyState({ onSuggest }: EmptyStateProps) {
 const SUGGESTIONS: { question: string; answer: string }[] = [
   {
     question: "Explain about call cleaner app",
@@ -146,18 +156,21 @@ const SUGGESTIONS: { question: string; answer: string }[] = [
         <h1 className="text-2xl font-semibold text-gray-900 mb-2">
           How can I help you?
         </h1>
-        <p className="text-sm text-gray-500">Ask anything. I'm ready.</p>
+        <p className="text-sm text-gray-500">Ask anything. I&apos;m ready.</p>
       </div>
 
       <div className="grid grid-cols-2 gap-2 w-full max-w-md">
             {SUGGESTIONS.map(({ question, answer }) => (
-          <button
+          <Button
             key={question}
+            type="button"
+            variant="outline"
+            size="default"
             onClick={() => onSuggest(question, answer)}
-            className="text-left text-xs text-gray-600 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-xl px-3 py-2.5 transition-colors leading-relaxed"
+            className="h-auto justify-start rounded-xl border-gray-200 bg-gray-50 px-3 py-2.5 text-left text-xs leading-relaxed text-gray-600 shadow-none transition-colors hover:bg-gray-100"
           >
             {question}
-          </button>
+          </Button>
         ))}
       </div>
     </div>
